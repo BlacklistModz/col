@@ -1,0 +1,60 @@
+.input-group .select2-container--bootstrap {
+    width: 100% !important;
+}
+
+@media screen and (max-width: 991px) {
+    .select-mounth-bottom {
+        margin-bottom: 15px;
+    }
+}
+
+@media (max-width: 991px) {
+    .portlet.light {
+        background: none;
+    }
+}
+
+.portlet.light {
+    background: none;
+}
+
+.select2-container--bootstrap .select2-selection--single {
+    padding: 10px 24px 6px 12px;
+}
+
+.select2-container--bootstrap .select2-selection {
+    border-radius: 0px;
+}
+
+.select2-container--bootstrap .select2-search--dropdown .select2-search__field {
+    border-radius: 0px;
+}
+
+.form-wizard .steps>li>a.step>.number {
+    padding: 11px 15px 13px;
+}
+
+.headtext-set-center {
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    color: #f39c12;
+}
+
+.fileUpload {
+    position: relative;
+    overflow: hidden;
+    /*margin: 10px;*/
+}
+
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}

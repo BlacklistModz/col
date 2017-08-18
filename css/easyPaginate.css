@@ -1,0 +1,68 @@
+ #easyPaginate {
+     /* width: 100%;*/
+ }
+ 
+ #easyPaginate img {
+     display: block;
+     /*margin-bottom: 10px;*/
+ }
+ 
+ .easyPaginateNav {
+     width: 100% !important;
+     text-align: center !important;
+ }
+ 
+ .easyPaginateNav a {
+     float: none;
+     border-radius: 0;
+     padding: 0;
+     /*border: 2px solid #f0f0f0;*/
+     display: inline-block;
+     font-size: 16px;
+     color: #252525;
+     font-weight: 700;
+     -webkit-transition: all 0.3s ease-in-out;
+     -moz-transition: all 0.3s ease-in-out;
+     -ms-transition: all 0.3s ease-in-out;
+     -o-transition: all 0.3s ease-in-out;
+     transition: all 0.3s ease-in-out;
+     margin: 0 3px;
+     text-align: center!important;
+ }
+ 
+ .easyPaginateNav a.current {
+     color: #ffffff;
+     background-color: #FF9800;
+     border-color: #f8931d;
+     border-radius: 50%;
+ }
+ 
+ .easyPaginateNav a:hover {
+     color: #ffffff;
+     background-color: #FF9800;
+     border-color: #f8931d;
+     border-radius: 50%;
+ }
+ 
+ @media (max-width: 479px) {
+     .easyPaginateNav a {
+         /*width: 35px;
+         height: 35px;
+         line-height: 30px;*/
+         width: 30px;
+         height: 30px;
+         line-height: 30px;
+     }
+ }
+ 
+ @media (min-width: 480px) {
+     .easyPaginateNav a {
+         /*width: 45px;
+         height: 45px;
+         line-height: 40px;*/
+         width: 35px;
+         height: 35px;
+         line-height: 35px;
+         margin-bottom: 15px;
+     }
+ }

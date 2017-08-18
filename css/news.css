@@ -1,0 +1,201 @@
+.newsList .media .media-left .maskingImage {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(254, 103, 17, 0.7);
+	opacity: 0;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.newsList .media .media-left .maskingImage .viewBtn {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	-moz-transform: translate(-50%, -50%);
+	-o-transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
+}
+.newsList .media .media-left .maskingImage .viewBtn {
+	width: 196px;
+	min-height: 55px;
+	border: 3px solid #ffffff;
+	text-transform: uppercase;
+	font-weight: 700;
+	color: #ffffff;
+	font-size: 16px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	box-shadow: 0;
+	border-radius: 0;
+	padding: 0;
+	line-height: 55px;
+}
+
+.newsList .media .media-left .maskingImage .viewBtn:hover {
+	background-color: #ffffff;
+	color: #fe6711;
+}
+/*.newsList .media {
+	margin-bottom: 50px;
+}*/
+
+.newsList .media .media-left {
+	position: relative;
+	padding-right: 0;
+	overflow: hidden;
+}
+
+.newsList .media .media-left img {
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
+.newsList .media .media-left .maskingImage .viewBtn {
+	width: 175px;
+	padding: 0;
+	line-height: 55px;
+}
+
+@media (max-width: 479px) {
+	.newsList .media .media-left {
+		float: none!important;
+		display: block;
+		/*margin: 0 0 20px 0;*/
+		margin: 0;
+	}
+	.newsList .media .media-left img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+@media (min-width: 480px) {
+	.newsList .media .media-left {
+		float: none!important;
+		display: block;
+		/*margin: 0 0 20px 0;*/
+		margin:0;
+	}
+	.newsList .media .media-left img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+@media (min-width: 768px) {
+	.newsList .media .media-left {
+		float: left!important;
+		margin-right: 15px;
+		display: inline-block;
+		width: 226px;
+	}
+	.newsList .media .media-left img {
+		width: 100%;
+		height: auto;
+	}
+}
+
+.newsList .media .media-body .media-heading a {
+	font-size: 20px;
+	letter-spacing: 1px;
+	margin-bottom: 25px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	color: #fe6711;
+}
+
+.newsList .media .media-body p {
+	font-size: 14px;
+	/*color: #fff;*/
+	line-height: 22px;
+	/*margin-top: 10px;
+	margin-bottom: 25px;*/
+	padding: 0px;
+	overflow: hidden;
+	max-height: 80px;
+}
+
+.newsList .media .media-body h3 {
+	color: #c5c5c5;
+	font-weight: 700;
+	margin-bottom: 25px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.newsList .media .media-body .btn-group .btn-default {
+	border-radius: 0;
+	width: 35px;
+	height: 35px;
+	padding: 0;
+	text-align: center;
+	margin-right: 7px;
+	border-color: #d0d0d0;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.newsList .media .media-body .btn-group .btn-default i {
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	color: #888888;
+}
+
+.newsList .media .media-body .btn-group .btn-default:hover,
+.newsList .media .media-body .btn-group .btn-default:focus {
+	background-color: #fe6711;
+	border-color: #fe6711;;
+}
+
+.newsList .media .media-body .btn-group .btn-default:hover i,
+.newsList .media .media-body .btn-group .btn-default:focus i {
+	color: #ffffff;
+}
+
+.newsList .media:hover .pull-left img {
+	-moz-transform: scale(1.2);
+	-o-transform: scale(1.2);
+	-ms-transform: scale(1.2);
+	-webkit-transform: scale(1.2);
+	transform: scale(1.2);
+}
+
+.newsList .media:hover .maskingImage {
+	opacity: 1;
+}
+
+.newsList .media:hover .maskingImage .viewBtn {
+	-webkit-animation: itemMove 0.3s linear;
+	animation: itemMove 0.3s linear;
+}
+
+.newsList .media:hover .media-heading a,
+.newsList .media:hover h3 {
+	color: #fe6711;
+}

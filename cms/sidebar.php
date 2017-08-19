@@ -35,6 +35,11 @@
                 <!-- <span class="pull-right-container"></span> -->
             </a>
         </li>
+        <li class="<?=($_GET["page"]=="faculty" ? "active" : "")?>">
+             <a href="../faculty/index.php?page=faculty"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                <span>จัดการข้อมูลคณะ/สาขาวิชา</span>
+            </a>
+        </li>
         <li class="treeview <?php if($_GET["page"] == "website") { echo "active"; } ?>">
             <a href="#">
                 <i class="fa fa-users"></i> <span>จัดการข้อมูลทั่วไป</span>

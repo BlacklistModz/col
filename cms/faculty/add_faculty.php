@@ -55,10 +55,10 @@ include("../sidebar.php");
 													<div class="tab-pane active" id="tab1">
 														<h3 class="block headtext-set-center">เพิ่มคณะ</h3>
 														<div class="form-group">
-															<label class="control-label col-md-2">ชื่อคณะ
+															<label class="control-label col-md-4">ชื่อคณะ
 																<span class="required"> * </span>
 															</label>
-															<div class="col-md-8">
+															<div class="col-md-4">
 																<input type="text" name="faculty_name" class="form-control" placeholder="ชื่อคณะ" required />
 															</div>
 														</div>
@@ -72,7 +72,7 @@ include("../sidebar.php");
 							</div>
 						</div>
 						<div class="box-footer">
-							<a href="index_faculty.php?page=<?php echo $_GET["page"]; ?>" class="btn btn-danger pull-left">ยกเลิก</a>
+							<a href="index.php?page=<?php echo $_GET["page"]; ?>" class="btn btn-danger pull-left">ยกเลิก</a>
 							<button type="submit" id="btnSubmit" class="btn green button-submit pull-right"><i class="fa fa-check"></i> บันทึก</button>
 							<input type="hidden" name="checkSubmit" value="1" />
 						</div>

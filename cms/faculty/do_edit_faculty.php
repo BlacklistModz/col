@@ -17,25 +17,45 @@ if( isset($_POST["checkSubmit"]) && $_POST["checkSubmit"] == 1 ){
 		$location = "edit_faculty.php?page={$page}&id={$id}";
 	}
 
-	$value = "";
-	foreach ($_POST as $key => $val) {
-		if( $key == "checkSubmit" || $key == "id" ) continue;
+	$result = mysqli_fetch_assoc($query);
 
-		$value .= !empty($value) ? "," : "";
-		$value .= "{$key}='{$val}'";
+	$faculty_name = trim($_POST["faculty_name"]);
+
+	$has_name = true;
+	if( $result['faculty_name'] == $faculty_name ){
+		$has_name = false;
 	}
 
 	$sql->table="tbl_faculty";
-	$sql->value=$value;
-	$sql->condition="WHERE faculty_id={$id}";
+	$sql->condition="WHERE faculty_name='{$faculty_name}'";
+	$is_name = mysqli_num_rows($sql->select());
 
-	if( $sql->update() ){
-		$alert = "แก้ไขข้อมูลเรียบร้อยแล้ว";
-		$location = "index.php?page={$page}";
+	if( !empty($is_name) && $has_name == true ){
+		$alert = "ตรวจพบชื่อคณะ {$faculty_name} ในระบบ กรุณาใช้ชื่ออื่น";
+		$location = "edit_faculty.php?page={$page}&id={$id}";
 	}
 	else{
-		$alert = "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง";
-		$location = "edit_faculty.php?page={$page}&id={$id}";
+		$value = "";
+		foreach ($_POST as $key => $val) {
+			if( $key == "checkSubmit" || $key == "id" ) continue;
+
+			$val = trim($val);
+			$value .= !empty($value) ? "," : "";
+			$value .= "{$key}='{$val}'";
+		}
+
+		$sql->table="tbl_faculty";
+		$sql->value=$value;
+		$sql->condition="WHERE faculty_id={$id}";
+
+		if( $sql->update() ){
+			$alert = "แก้ไขข้อมูลเรียบร้อยแล้ว";
+			$location = "index.php?page={$page}";
+		}
+		else{
+			$alert = "เกิดข้อผิดพลาด กรุณาลองใหม่อีกครั้ง";
+			$location = "edit_faculty.php?page={$page}&id={$id}";
+		}
 	}
 
 }else{

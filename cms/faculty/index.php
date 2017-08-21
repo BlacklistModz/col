@@ -37,7 +37,8 @@ $query = $sql->select();
 									<thead>
 										<tr>
 											<th width="5%">ลำดับ</th>
-											<th width="70%">ชื่อคณะ</th>
+											<th width="60%">ชื่อคณะ</th>
+											<th width="10%">จำนวนนักศึกษา (คน)</th>
 											<th width="10%">จำนวนสาขาวิชา</th>
 											<th width="15%">จัดการ</th>
 										</tr>
@@ -47,12 +48,25 @@ $query = $sql->select();
 										<?php $num=0; while($results = mysqli_fetch_assoc($query)){ $num++; ?>
 										<tr>
 											<td class="text-center"><?=$num?></td>
-											<td><?=$results['faculty_name']?></td>
+											<td>
+												<a href="index_major.php?page=<?=$_GET["page"]?>&id=<?=$results['faculty_id']?>">
+													<?=$results['faculty_name']?>
+												</a>
+											</td>
+											<td class="text-center">
+												<?php 
+												$sql->table="tbl_student";
+												$sql->condition="WHERE faculty_id={$results['faculty_id']}";
+												$numStu = mysqli_num_rows($sql->select());
+												echo number_format($numStu);
+												?>
+											</td>
 											<td class="text-center">
 												<?php 
 												$sql->table="tbl_majors";
 												$sql->condition="WHERE major_faculty_id={$results['faculty_id']}";
-												echo mysqli_num_rows($sql->select());
+												$numRow = mysqli_num_rows($sql->select());
+												echo number_format($numRow);
 												?>
 											</td>
 											<td>
@@ -60,7 +74,17 @@ $query = $sql->select();
 												</a>
 												<a href="edit_faculty.php?page=<?php echo $_GET["page"]; ?>&id=<?php echo $results["faculty_id"]; ?>" class="btn btn-warning" data-toggle="tooltip" title="แก้ไขข้อมูลของ <?php echo $results["faculty_name"]; ?>">แก้ไข
 												</a>
-												<a href="delete_faculty.php?page=<?php echo $_GET["page"]; ?>&id=<?php echo $results["faculty_id"]; ?>" class="btn btn-danger" onclick="return confirm('คุณต้องการลบ <?php echo $results["faculty_name"]; ?> ใช่หรือไม่ ?')">ลบ
+												<?php 
+												$cls = "btn btn-danger";
+												$attr = "";
+												$name = "ลบ";
+												if ( !empty($numRow) ) {
+													$cls .= " disabled";
+													$attr .= 'disabled="disabled"';
+													$name =  '<i class="fa fa-lock"></i>';
+												} 
+												?>
+												<a href="delete_faculty.php?page=<?php echo $_GET["page"]; ?>&id=<?php echo $results["faculty_id"]; ?>" class="<?=$cls?>" <?=$attr?> onclick="return confirm('คุณต้องการลบ <?php echo $results["faculty_name"]; ?> ใช่หรือไม่ ?')"><?=$name?>
 												</a>
 											</td>
 										</tr>

@@ -51,7 +51,7 @@ if(isset($_POST["checkCorpEdit"]) and $_POST["checkCorpEdit"] == "1")
 		#SET DATA
 		$field = "";
 		$value = "";
-		$_POST["update_date"] = "NOW()";
+		$_POST["update_date"] = date("c");
 		$_POST["year_id"] = $resultYear['id'];
 
 		foreach ($_POST as $key => $val) {
@@ -75,7 +75,7 @@ if(isset($_POST["checkCorpEdit"]) and $_POST["checkCorpEdit"] == "1")
 	{
 		#SET DATA
 		$data = "";
-		$_POST["update_date"] = "NOW()";
+		$_POST["update_date"] = date("c");
 		foreach ($_POST as $key => $val) {
 			
 			if( $key == "checkCorpEdit" || $key == "id" || $key == "wel" || $key == "position" || $key == "job_description" || $key == "wel_value" || $key == "stu_count" ) continue;

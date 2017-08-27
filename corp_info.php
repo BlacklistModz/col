@@ -7,6 +7,7 @@ $sql = new SQLiManager();
 if(isset($_POST["checkCorpEdit"]) and $_POST["checkCorpEdit"] == "1")
 {
 	$id = $_POST["id"];
+/* 
 // tab1
 	$name_th = $_POST["name_th"];
 	$name_en = $_POST["name_en"];
@@ -36,7 +37,7 @@ if(isset($_POST["checkCorpEdit"]) and $_POST["checkCorpEdit"] == "1")
 	$compensation_status = $_POST["compensation_status"];
 	$welfare = $_POST["welfare"]; //สวัสดิการอื่นๆ
 	$update_user = $_POST["update_user"];
-	$user_id = $_POST["update_user"];
+	$user_id = $_POST["update_user"]; */
 
 	$sql->table="tbl_year";
 	$sql->condition="ORDER By academic_year DESC LIMIT 0,1";
@@ -47,53 +48,95 @@ if(isset($_POST["checkCorpEdit"]) and $_POST["checkCorpEdit"] == "1")
 	$numRow = mysqli_num_rows($sql->select());
 	if($numRow <= 0)
 	{
+		#SET DATA
+		$field = "";
+		$value = "";
+		$_POST["update_date"] = "NOW()";
+		$_POST["year_id"] = $resultYear['id'];
+
+		foreach ($_POST as $key => $val) {
+
+			if( $key == "checkCorpEdit" || $key == "id" || $key == "wel" || $key == "position" || $key == "job_description" || $key == "wel_value" || $key == "stu_count" ) continue;
+
+			$field .= !empty($field) ? "," : "";
+			$field .= "{$key}";
+
+			$value .= !empty($value) ? "," : "";
+			$value .= "'{$val}'";
+		}
+
 		$sql->table="tbl_corporation";
-		$sql->field="user_id,name_th,name_en,address,province_id,zip_code,phone,fax,business_type,emp_count,work_time,manager_name,mjob_position,major_require,stu_features,staff_name,sjob_position,division,tel,practice_start,practice_end,compensation,compensation_status,welfare,year_id,update_date,update_user";
-		$sql->value="'$user_id','$name_th','$name_en','$address','$province_id','$zip_code','$phone','$fax','$business_type','$emp_count','$work_time','$manager_name','$mjob_position','$major_require','$stu_features','$staff_name','$sjob_position','$division','$tel','$practice_start','$practice_end','$compensation','$compensation_status','$welfare','".$resultYear["id"]."',NOW(),'$update_user'";
+		$sql->field=$field;
+		$sql->value=$value;
 		$query = $sql->insert();
 		$id = mysqli_insert_id($sql->connect);
 	}
 	else
 	{
+		#SET DATA
+		$data = "";
+		$_POST["update_date"] = "NOW()";
+		foreach ($_POST as $key => $val) {
+			
+			if( $key == "checkCorpEdit" || $key == "id" || $key == "wel" || $key == "position" || $key == "job_description" || $key == "wel_value" || $key == "stu_count" ) continue;
+
+			$data .= !empty($data) ? "," : "";
+			$data .= "{$key}='{$val}'"; 
+		}
+
 		$sql->table="tbl_corporation";
-		$sql->value="name_th='$name_th',name_en='$name_en',address='$address',province_id='$province_id',zip_code='$zip_code',phone='$phone',fax='$fax',business_type='$business_type',emp_count='$emp_count',work_time='$work_time',manager_name='$manager_name',mjob_position='$mjob_position',major_require='$major_require',stu_features='$stu_features',staff_name='$staff_name',sjob_position='$sjob_position',division='$division',tel='$tel',practice_start='$practice_start',practice_end='$practice_end',compensation='$compensation',compensation_status='$compensation_status',welfare='$welfare',update_date=NOW(),update_user='$update_user'";
-		$sql->condition="WHERE id='$id'";
+		$sql->value=$data;
+		$sql->condition="WHERE id='{$id}'";
 		$query = $sql->update();
 	}
 
 	if($query)
 	{
-		// $sql->table="tbl_position";
-		// $sql->condition="WHERE corp_id='$id'";
-		// while($resultPosition = mysqli_fetch_assoc($sql->select())
-		// {
-		// 	$sql->table="tbl_stu_job";
-		// 	$sql->condition="WHERE pos_id='{$resultPosition["id"]}'";
-		// 	$sql->delete();
-		// }
-		// $sql->delete();
-		// ///////////////////////////////////////
-		// $count = count($_POST["position"]);
-		// for($i=0;$i<=$count;$i++)
-		// {
-		// 	if(!empty($_POST["position"][$i]) and !empty($_POST["stu_count"][$i]))
-		// 	{
-		// 		$name = $_POST["position"][$i];
-		// 		$job_description = $_POST["job_description"][$i];
-		// 		$stu_count = $_POST["stu_count"][$i];
-		// 		$sql->table="tbl_position";
-		// 		$sql->field="corp_id,pos_name,job_description,stu_count";
-		// 		$sql->value="'$id','$name','$job_description','$stu_count'";
-		// 		$sql->insert();
-		// 	}
-		// }
+		$sql->table="tbl_position";
+		$sql->condition="WHERE corp_id='{$id}'";
+		while($resultPosition = mysqli_fetch_assoc( $sql->select() ) ){
+			$sql->table="tbl_stu_job";
+			$sql->condition="WHERE pos_id='{$resultPosition["id"]}'";
+			$sql->delete();
+		}
+		$sql->delete();
+		///////////////////////////////////////
+		foreach ($_POST["position"] as $key => $value) {
+			if( empty($value) || empty($_POST["stu_count"][$key]) ) continue;
+
+			$sql->table="tbl_position";
+			$sql->field="corp_id,pos_name,job_description,stu_count";
+			$sql->value="'{$id}','{$_POST["job_description"][$key]}','{$_POST["stu_count"][$key]}'";
+		}
+		/* $count = count($_POST["position"]);
+		for($i=0;$i<=$count;$i++)
+		{
+			if(!empty($_POST["position"][$i]) and !empty($_POST["stu_count"][$i]))
+			{
+				$name = $_POST["position"][$i];
+				$job_description = $_POST["job_description"][$i];
+				$stu_count = $_POST["stu_count"][$i];
+				$sql->table="tbl_position";
+				$sql->field="corp_id,pos_name,job_description,stu_count";
+				$sql->value="'$id','$name','$job_description','$stu_count'";
+				$sql->insert();
+			}
+		} */
 		////////////////////////////////////////
-		if(isset($_POST["wel_id"])) 
+		if(isset($_POST["wel"])) 
 		{
 			$sql->table="tbl_corp_welfare";
-			$sql->condition="WHERE corp_id='$id'";
+			$sql->condition="WHERE corp_id={$id}";
 			$sql->delete();
-			$countWel = count($_POST["wel_id"]);
+
+			foreach ($_POST["wel"] as $key => $value) {
+
+				$sql->table="tbl_corp_welfare";
+				$sql->field="corp_id,wel_id,wel_value";
+				$sql->value="'{$id}','{$value}','{$_POST["wel_value"][$key]}'";
+				$sql->insert();
+			}
+			/* $countWel = count($_POST["wel"]);
 			for($x=0;$x<=$countWel;$x++)
 			{
 				if(!empty($_POST["wel_id"][$x]))
@@ -104,7 +147,7 @@ if(isset($_POST["checkCorpEdit"]) and $_POST["checkCorpEdit"] == "1")
 					$sql->value="'$id','$wel_id'";
 					$sql->insert();
 				}
-			}
+			} */
 		}
 		// $alert = "บันทึกข้อมูลสถานประกอบการของท่าน ในปีการศึกษา {$resultYear["academic_year"]} เรียบร้อยแล้ว";
 		// $location = "SE-CO-002.php?page=company&sub=coop_02";

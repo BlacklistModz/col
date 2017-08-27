@@ -3,12 +3,21 @@
         <div class="col-md-12 color-footer">
             <div class="row">
                 <div class="col-md-5">
-                    <div class="box-contact adsl">
-                        <div class="brand">
-                            <img src="img/logo.png">
+                    <div class="contact-menu contact-us">
+                        <h4><a href="#">ที่อยู่</a></h4>
+                        <!-- <div class="brand">
+                            <img src="img/logo-cool.png">
+                        </div> -->
+                        <div class="box-contact">
+                            <ul>
+                                <li class="con-addr">
+                                    <div class="icon-contact"><i class="fa fa-map-marker"></i></div> ชั้น 4 อาคาร 38 ตึกโอฬาร 
+                                </li>
+                                <li class="con-addr2">
+                                    <div class="icon-contact"><i class="fa fa-location-arrow"></i></div> มหาวิทยาลัยราชภัฏลำปาง 119 หมู่ 9 ถนนลำปาง-แม่ทะ ต.ชมพู อ.เมือง จ.ลำปาง 52100
+                                </li>
+                            </ul>
                         </div>
-                        <h3>ชั้น 4 อาคาร 39 ศูนย์คอมพิวเตอร์</h3>
-                        <p>มหาวิทยาลัยราชภัฏลำปาง 119 หมู่ 9 ถนนลำปาง-แม่ทะ ต.ชมพู อ.เมือง จ.ลำปาง 52100</p>
                     </div>
                 </div>
                 <div class="col-md-7">
@@ -32,7 +41,7 @@
                             <!-- <h4><a href="#">เกี่ยวกับเรา</a></h4> -->
                             <ul class="img-se">
                                 <li>
-                                    <img src="img/softeng.png" style="width:140px;">
+                                    <img src="img/logo-cool.png" style="width:140px;">
                                 </li>
                             </ul>
                         </div>

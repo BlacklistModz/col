@@ -40,7 +40,7 @@ if(!isset($_GET["page"]) or (empty($_GET["page"])))
     <meta name="msapplication-navbutton-color" content="#fe6711">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>สหกิจศึกษา วิศวกรรมซอฟต์แวร์</title>
+    <title>ศูนย์สหกิจศึกษา มหาวิทยาลัยราชภัฏลำปาง</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="shortcut icon" href="img/favicon.png">
     <!-- CSS Libralies -->
@@ -117,19 +117,19 @@ if(!isset($_GET["page"]) or (empty($_GET["page"])))
     <header>
         <div class="container">
             <div class="row">
-                <div class="col-md-4 col-xs-12 grid-brand">
-                    <div class="brand">
-                        <a href="index.php?page=home"><img src="img/logo.png"></a>
+                <div class="col-md-12 col-xs-12 grid-brand">
+                    <div class="text-center">
+                        <a href="index.php?page=home"><img src="img/logo-cool.png" class="logo-header"></a>
                     </div>
                 </div>
-                <div class="col-md-8 col-xs-12 grid-client">
+                <!-- <div class="col-md-8 col-xs-12 grid-client">
                     <div class="client">
                         <img src="img/Award1.png" />
                         <img src="img/Award2.png" />
                         <img src="img/Award3.png" />
                         <img src="img/Award4.png" />
                     </div>
-                </div>
+                </div> -->
             </div>
             <nav class="navbar navbar-default navbar-color">
                 <div class="navbar-header">

@@ -1846,3 +1846,8 @@ Call
     color: #FFF;
     text-decoration: none;
 }
+
+.logo-header{
+    height: auto;
+    width: 170px;
+}

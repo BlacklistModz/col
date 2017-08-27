@@ -94,9 +94,15 @@ $resultUpdate = mysqli_fetch_assoc($queryUpdate);
                                             <span class="desc"><i class="fa fa-check success-form-input"></i> การปฏิบัติงาน </span>
                                         </a>
                                     </li>
-                                    <li>
+                                    <!-- <li>
                                         <a href="#tab4" data-toggle="tab" class="step">
                                             <span class="number"> 4 </span>
+                                            <span class="desc"><i class="fa fa-check success-form-input"></i> สาขาวิชาที่ต้องการ </span>
+                                        </a>
+                                    </li> -->
+                                    <li>
+                                        <a href="#tab5" data-toggle="tab" class="step">
+                                            <span class="number"> 5 </span>
                                             <span class="desc"><i class="fa fa-check success-form-input"></i> ตรวจสอบข้อมูล </span>
                                         </a>
                                     </li>
@@ -240,11 +246,19 @@ $resultUpdate = mysqli_fetch_assoc($queryUpdate);
                                                </div>
                                            </div>
                                            <div class="form-group">
-                                            <label class="control-label col-md-4">คุณสมบัติของนักศึกษาและข้อกําหนดอื่นๆ
+                                                <label class="control-label col-md-4">ความสามารถทางวิชาการ<br/>หรือทักษะที่นักศึกษาควรมี
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-6">
+                                                    <textarea class="form-control" rows="3" name="stu_academic" placeholder=""><?php echo $resultCorp["stu_academic"]; ?></textarea>
+                                                </div>
+                                           </div>
+                                           <div class="form-group">
+                                            <label class="control-label col-md-4">ข้อกำหนดอื่นๆ
                                                 <span class="required"> * </span>
                                             </label>
                                             <div class="col-md-6">
-                                                <textarea class="form-control" rows="3" name="stu_features" placeholder="คุณสมบัติของนักศึกษาและข้อกําหนดอื่นๆ (เช่น อุปกรณ์หรือเครื่องมือที่ต้องนําติดตัวไประหว่างปฏิบัติงาน)"><?php echo $resultCorp["stu_features"]; ?></textarea>
+                                                <textarea class="form-control" rows="3" name="stu_features" placeholder="เช่น อุปกรณ์หรือเครื่องมือที่ต้องนําติดตัวไประหว่างปฏิบัติงาน"><?php echo $resultCorp["stu_features"]; ?></textarea>
                                             </div>
                                         </div>
                                         <h4 class="block headtext-set-center">ตําแหน่งงานที่เสนอให้นักศึกษาปฏิบัติ</h4>
@@ -445,44 +459,74 @@ $resultUpdate = mysqli_fetch_assoc($queryUpdate);
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label class="control-label col-md-4">สวัสดิการ &nbsp;</label>
+                                                    <label class="control-label col-md-4">สวัสดิการ  <span class="required"> * </span> &nbsp;</label>
                                                     <div class="col-md-6">
                                                         <div class="md-checkbox-inline">
                                                             <?php 
                                                             $sql->table="tbl_welfare";
-                                                            $sql->condition="ORDER By id asc";
+                                                            $sql->condition="WHERE wel_display='enabled' ORDER By id asc";
                                                             $queryWel = $sql->select();
                                                             $num = 1;
+                                                            $radio = 3;
                                                             while($resultWel = mysqli_fetch_assoc($queryWel))
                                                             {
-                                                                $sql->table="tbl_corp_welfare";
-                                                                $sql->condition="WHERE corp_id='".$resultCorp["id"]."' and wel_id='".$resultWel["id"]."'";
-                                                                $queryCorpWel = $sql->select();
-                                                                $numCorpWel = mysqli_num_rows($queryCorpWel);
-                                                                if($numCorpWel == 1)
-                                                                {
-                                                                    $checked = "checked";
-                                                                }
-                                                                else
-                                                                {
-                                                                    $checked = "";
-                                                                }
                                                                 ?>
-                                                                <div class="md-checkbox">
-                                                                    <input type="checkbox" id="checkbox<?php echo $num; ?>" class="md-check" name="wel_id[]" value="<?php echo $resultWel["id"]; ?>" data-title="<?php echo $resultWel["wel_name"]; ?>" <?php echo $checked; ?> />
-                                                                    <label for="checkbox<?php echo $num; ?>">
-                                                                        <span></span>
-                                                                        <span class="check"></span>
-                                                                        <span class="box"></span><?php echo $resultWel["wel_name"]; ?></label>
+                                                                <div class="col-md-12" style="margin-bottom:15px; border: 3px solid #f0ad4e">
+                                                                    <div style="margin: 15px 0px 15px 0px">
+                                                                    <label><?=$num?>. <?=$resultWel['wel_name']?></label>
+                                                                    <div class="md-radio-inline">
+                                                                        <div class="md-radio">
+                                                                            <input type="radio" id="radio1<?=$radio?>" name="wel[<?=$num?>]" value="1" class="md-radiobtn" data-title="ไม่มี" />
+                                                                            <label for="radio1<?=$radio?>">
+                                                                                <span></span>
+                                                                                <span class="check"></span>
+                                                                                <span class="box"></span> ไม่มี
+                                                                            </label>
+                                                                        </div>
                                                                     </div>
-                                                                    <?php
-                                                                    $num++;
-                                                                }
-                                                                ?>
-                                                                <div id="form_payment_error"> </div>
-                                                            </div>
+                                                                    <div class="md-radio-inline">
+                                                                        <div class="md-radio">
+                                                                            <input type="radio" id="radio2<?=$radio?>" name="wel[<?=$num?>]" value="2" class="md-radiobtn" data-title="มี" />
+                                                                            <label for="radio2<?=$radio?>">
+                                                                                <span></span>
+                                                                                <span class="check"></span>
+                                                                                <span class="box"></span> มี
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="md-radio-inline">
+                                                                        <div class="md-radio">
+                                                                            <input type="radio" id="radio3<?=$radio?>" name="wel[<?=$num?>]" value="3" class="md-radiobtn" data-title="ไม่เสียค่าใช้จ่าย" />
+                                                                            <label for="radio3<?=$radio?>">
+                                                                                <span></span>
+                                                                                <span class="check"></span>
+                                                                                <span class="box"></span> ไม่เสียค่าใช้จ่าย
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="md-radio-inline">
+                                                                        <div class="md-radio form-inline">
+                                                                            <input type="radio" id="radio4<?=$radio?>" name="wel[<?=$num?>]" value="4" class="md-radiobtn" data-title="นักศึกษารับผิดชอบค่าใช้จ่ายเอง" />
+                                                                            <label for="radio4<?=$radio?>">
+                                                                                <span></span>
+                                                                                <span class="check"></span>
+                                                                                <span class="box"></span> นักศึกษารับผิดชอบค่าใช้จ่ายเอง
+                                                                                    <input type="text" class="form-control" name="wel_value[<?=$num?>]" value="" style="width: 100px;">
+                                                                                    <span class="box"></span> บาท/วัน/เดือน
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                    </div>
+                                                                </div>
+                                                                <?php
+                                                                $num++;
+                                                                $radio++;
+                                                            }
+                                                            ?>
+                                                            <div id="form_payment_error"> </div>
                                                         </div>
                                                     </div>
+                                                </div>
                                                     <div class="form-group">
                                                         <label class="control-label col-md-4">อื่นๆ (ถ้ามีโปรดระบุ)
                                                             <span class="required"> </span>
@@ -492,7 +536,59 @@ $resultUpdate = mysqli_fetch_assoc($queryUpdate);
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane" id="tab4">
+                                               <!--  <div class="tab-pane" id="tab4">
+                                                    <h3 class="block headtext-set-center">สาขาวิชาของมหาวิทยาลัยราชภัฏลำปางที่เข้าร่วมโครงการสหกิจศึกษา มีดังนี้</h3>
+                                                    <h4 class="text-center">กรุณาเลือกสาขาวิชา และกรอกจำนวนนักศึกษาที่ต้องการรับ</h4>
+                                                    <div class="table-responsive">
+                                                        <?php 
+                                                        $sql->table="tbl_faculty";
+                                                        $sql->condition="ORDER BY faculty_id ASC";
+                                                        $query = $sql->select();
+                                                        while($results = mysqli_fetch_assoc($query)){
+                                                            ?>
+                                                            <table class="table table-bordered">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th width="70%"><?=$results['faculty_name']?></th>
+                                                                        <th width="30%" class="text-center">สาขาเลือกได้มากกว่า 1 สาขาวิชา</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody role="lists">
+                                                                    <?php 
+                                                                    $sql->table="tbl_majors";
+                                                                    $sql->condition="WHERE major_faculty_id={$results["faculty_id"]}";
+                                                                    $q_major = $sql->select();
+                                                                    $m = 1;
+                                                                    while($major = mysqli_fetch_assoc($q_major)){
+                                                                        ?>
+                                                                        <tr>
+                                                                            <td><?=$major["major_name"]?></td>
+                                                                            <td class="text-cneter">
+                                                                                <div class="form-group">
+                                                                                    <div class="col-md-3">
+                                                                                        <label>จำนวน</label>
+                                                                                    </div>
+                                                                                    <div class="col-md-5">
+                                                                                        <input type="number" class="form-control" name="major[<?=$major['major_id']?>]" style="text-align: center;">
+                                                                                    </div>
+                                                                                    <div class="col-md-3">
+                                                                                        <label>ตำแหน่ง</label>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </td>
+                                                                        </tr>
+                                                                        <?php 
+                                                                        $m++;
+                                                                    } 
+                                                                    ?>
+                                                                </tbody>
+                                                            </table>
+                                                            <?php 
+                                                        } 
+                                                        ?>
+                                                    </div>
+                                                </div> -->
+                                                <div class="tab-pane" id="tab5">
                                                     <div class="alert alert-warning" style="text-align:center;color: #a94442;background-color: #f2dede;border-color: #ebccd1;">
                                                         *** กรุณาตรวจสอบข้อมูลให้ครบถ้วนก่อนทำการบันทึก !
                                                     </div>

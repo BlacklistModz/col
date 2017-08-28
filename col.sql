@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2017 at 12:41 PM
+-- Generation Time: Aug 28, 2017 at 03:29 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -145,8 +145,8 @@ CREATE TABLE `tbl_authentication` (
 --
 
 INSERT INTO `tbl_authentication` (`id`, `username`, `password`, `name`, `status_id`, `picture`, `create_date`, `accept_year_id`, `last_login`, `IP_login`) VALUES
-(1, 'admin', '123456', 'พชร นันทอาภา', 1, 'Profile_2017-08-18-15-17-12_5996a28857eb76.95578751.jpg', '2016-10-10', 0, '2017-08-25 22:40:25', '::1'),
-(29, 'sombra', '1234', 'พชร นันทอาภา', 3, 'Profile_2016-11-03-14-17-47_581ae49b2582d8.27302092.PNG', '2016-11-03', 2, '2017-08-27 22:49:12', '::1'),
+(1, 'admin', '123456', 'พชร นันทอาภา', 1, 'Profile_2017-08-18-15-17-12_5996a28857eb76.95578751.jpg', '2016-10-10', 0, '2017-08-28 20:21:40', '::1'),
+(29, 'sombra', '1234', 'พชร นันทอาภา', 3, 'Profile_2016-11-03-14-17-47_581ae49b2582d8.27302092.PNG', '2016-11-03', 2, '2017-08-28 19:24:35', '::1'),
 (30, '55122660114', '1234', 'พชร นันทอาภา', 4, 'Profile_2016-11-29-15-01-24_583d35d46d6135.42294741.JPG', '2016-11-03', 2, '2016-11-29 13:27:57', '223.204.208.220'),
 (44, 'test1', '123456', 'Pachara Nuntharrpa', 0, 'Profile_2016-11-18-12-35-04_582e9308d3b3b7.00084064.jpg', '2016-11-18', 0, '0000-00-00 00:00:00', ''),
 (45, 'xblacklistz', '123456789', 'พชร นันทอาภา', 3, 'Profile_2016-11-25-19-42-16_583831a87f8934.23667022.PNG', '2016-11-25', 2, '0000-00-00 00:00:00', ''),
@@ -198,11 +198,30 @@ CREATE TABLE `tbl_corporation` (
 
 INSERT INTO `tbl_corporation` (`id`, `user_id`, `name_th`, `name_en`, `address`, `province_id`, `zip_code`, `phone`, `fax`, `email`, `business_type`, `emp_count`, `work_time`, `manager_name`, `mjob_position`, `major_require`, `stu_academic`, `stu_features`, `staff_name`, `sjob_position`, `division`, `tel`, `practice_start`, `practice_end`, `compensation`, `compensation_status`, `welfare`, `update_date`, `update_user`, `year_id`, `session_id`) VALUES
 (3, 29, 'Sombra Overwatch CO,Ltd', 'Sombra Overwatch CO,Ltd', 'ตามบัตรประชาชน', 1, '10120', '0888888888', '0888888888', 'blacklistmodz.ton@gmail.com', 'Software House', 4, 40, 'พชร นันทอาภา', 'ทำทุกอย่าง', 'วิศวกรรมซอฟต์แวร์,วิทยาการคอมพิว', '', '-> ขยัน\r\n-> มีความอดทน\r\n-> มีความเป็นผู้นำ', 'จักรกฤษ แปงเมือง', 'พนักงานขับรถ', 'ซ่อมบำรุง', '0992723554', '1', '4', '200', 0, '', '2016-11-03', 29, 1, '2cr5ssj4pdeo5qk8r03je4l9b3'),
-(4, 29, 'Sombra Overwatch CO,Ltd', 'Sombra Overwatch CO,Ltd', '414 ม.4 ซ.3 ต.ท่าผา อ.เกาะคา', 40, '52130', '0888888888', '0888888888', '', 'Software House', 4, 40, 'พชร นันทอาภา', 'ทำทุกอย่าง', 'วิศวกรรมซอฟต์แวร์,วิทยาการคอมพิว', '', '-> ขยัน\r\n-> มีความอดทน\r\n-> มีความเป็นผู้นำ', 'จักรกฤษ แปงเมือง', 'พนักงานขับรถ', 'ซ่อมบำรุง', '0992723554', '1', '4', '200', 0, '', '2016-11-03', 29, 2, ''),
+(4, 29, 'Sombra Overwatch CO,Ltd', 'Sombra Overwatch CO,Ltd', '414 ม.4 ซ.3 ต.ท่าผา อ.เกาะคา', 40, '52130', '0888888888', '0888888888', 'gg@gg.com', 'Software House', 4, 40, 'พชร นันทอาภา', 'ทำทุกอย่าง', 'วิศวกรรมซอฟต์แวร์,วิทยาการคอมพิว', '', '-> ขยัน\r\n-> มีความอดทน\r\n-> มีความเป็นผู้นำ', 'จักรกฤษ แปงเมือง', 'พนักงานขับรถ', 'ซ่อมบำรุง', '0992723554', '1', '4', '200', 0, '', '2017-08-28', 29, 2, ''),
 (8, 44, 'Hacking System OW LO,Ltd', '', '', 0, '', '088888888', '088888888', 'blacklistmodz.ton@gmail.com', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '0000-00-00', 0, 0, '1i7kas9es2b80tmlilnll9uof4'),
 (10, 46, 'Smile IT Solution', '', '', 0, '', '0992723554', '992723554', 'bigsofteng@gmail.com1', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '0000-00-00', 0, 0, 'tof5c04c20nv053t0c199mc864'),
 (11, 47, 'Smile', 'จักรกฤษ แปงเมือง', '204 หมู่ 11 ต.เสริมขวา\r\nอ.เสริมงาม', 40, '52210', '992723554', '992723554', 'bigsofteng@gmail.com', '์Network', 2, 2, 'จักรกฤษ แปงเมือง', 'นั้นสิ', '1234', '', '1234', 'จักรกฤษ แปงเมือง', 'นั้นสิ', 'อะไรนะ', '0992723554', '1', '6', '200', 0, '', '2016-11-28', 47, 0, 'tof5c04c20nv053t0c199mc864'),
 (12, 47, 'Smile', 'จักรกฤษ แปงเมือง', '204 หมู่ 11 ต.เสริมขวา\r\nอ.เสริมงาม', 40, '52210', '992723554', '992723554', '', '์Network', 2, 2, 'จักรกฤษ แปงเมือง', 'นั้นสิ', '1234', '', '1234', 'จักรกฤษ แปงเมือง', 'นั้นสิ', 'อะไรนะ', '0992723554', '1', '6', '200', 0, '', '2016-11-28', 47, 2, '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_corp_majors`
+--
+
+CREATE TABLE `tbl_corp_majors` (
+  `corp_id` int(11) NOT NULL,
+  `major_id` int(11) NOT NULL,
+  `student_amount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tbl_corp_majors`
+--
+
+INSERT INTO `tbl_corp_majors` (`corp_id`, `major_id`, `student_amount`) VALUES
+(4, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -214,6 +233,7 @@ CREATE TABLE `tbl_corp_welfare` (
   `id` int(11) NOT NULL,
   `corp_id` int(11) NOT NULL,
   `wel_id` int(11) NOT NULL,
+  `wel_type` int(1) NOT NULL,
   `wel_value` varchar(5) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -221,21 +241,9 @@ CREATE TABLE `tbl_corp_welfare` (
 -- Dumping data for table `tbl_corp_welfare`
 --
 
-INSERT INTO `tbl_corp_welfare` (`id`, `corp_id`, `wel_id`, `wel_value`) VALUES
-(1, 3, 1, ''),
-(7, 4, 1, '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_crop_majors`
---
-
-CREATE TABLE `tbl_crop_majors` (
-  `crop_id` int(11) NOT NULL,
-  `major_id` int(11) NOT NULL,
-  `student_amount` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO `tbl_corp_welfare` (`id`, `corp_id`, `wel_id`, `wel_type`, `wel_value`) VALUES
+(15, 4, 2, 1, ''),
+(16, 4, 4, 2, '');
 
 -- --------------------------------------------------------
 
@@ -303,7 +311,8 @@ CREATE TABLE `tbl_faculty` (
 --
 
 INSERT INTO `tbl_faculty` (`faculty_id`, `faculty_name`) VALUES
-(1, 'เทคโนโลยีอุตสาหกรรม');
+(1, 'เทคโนโลยีอุตสาหกรรม'),
+(2, 'วิทยาศาสตร์');
 
 -- --------------------------------------------------------
 
@@ -348,7 +357,9 @@ CREATE TABLE `tbl_majors` (
 
 INSERT INTO `tbl_majors` (`major_id`, `major_faculty_id`, `major_name`) VALUES
 (1, 1, 'วิศวกรรมซอฟต์แวร์'),
-(2, 1, 'โยธา');
+(2, 1, 'โยธา'),
+(3, 2, 'คณิตศาสตร์'),
+(4, 2, 'วิทยาศาสตร์');
 
 -- --------------------------------------------------------
 
@@ -850,13 +861,6 @@ CREATE TABLE `tbl_stu_job` (
   `year_id` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `tbl_stu_job`
---
-
-INSERT INTO `tbl_stu_job` (`id`, `pos_id`, `stu_id`, `job_status`, `year_id`) VALUES
-(1, 8, 30, 3, 2);
-
 -- --------------------------------------------------------
 
 --
@@ -1312,7 +1316,7 @@ ALTER TABLE `tbl_corporation`
 -- AUTO_INCREMENT for table `tbl_corp_welfare`
 --
 ALTER TABLE `tbl_corp_welfare`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 --
 -- AUTO_INCREMENT for table `tbl_document`
 --
@@ -1327,7 +1331,7 @@ ALTER TABLE `tbl_education`
 -- AUTO_INCREMENT for table `tbl_faculty`
 --
 ALTER TABLE `tbl_faculty`
-  MODIFY `faculty_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `faculty_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `tbl_infomation`
 --
@@ -1337,7 +1341,7 @@ ALTER TABLE `tbl_infomation`
 -- AUTO_INCREMENT for table `tbl_majors`
 --
 ALTER TABLE `tbl_majors`
-  MODIFY `major_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `major_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `tbl_news`
 --

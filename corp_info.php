@@ -7,37 +7,6 @@ $sql = new SQLiManager();
 if(isset($_POST["checkCorpEdit"]) and $_POST["checkCorpEdit"] == "1")
 {
 	$id = $_POST["id"];
-/* 
-// tab1
-	$name_th = $_POST["name_th"];
-	$name_en = $_POST["name_en"];
-	$address = $_POST["address"];
-	$province_id = $_POST["province_id"];
-	$zip_code = $_POST["zip_code"];
-	$phone = $_POST["phone"];
-	$fax = $_POST["fax"];
-	$business_type = $_POST["business_type"];
-	$emp_count = $_POST["emp_count"];
-	$work_time = $_POST["work_time"];
-
-//tab 2
-	$manager_name = $_POST["manager_name"];
-	$mjob_position = $_POST["mjob_position"];
-	$major_require = $_POST["major_require"];
-	$stu_features = $_POST["stu_features"];
-
-//tab 3
-	$staff_name = $_POST["staff_name"];
-	$sjob_position = $_POST["sjob_position"];
-	$division = $_POST["division"];
-	$tel = $_POST["tel"];
-	$practice_start = $_POST["practice_start"];
-	$practice_end = $_POST["practice_end"];
-	$compensation = $_POST["compensation"];
-	$compensation_status = $_POST["compensation_status"];
-	$welfare = $_POST["welfare"]; //สวัสดิการอื่นๆ
-	$update_user = $_POST["update_user"];
-	$user_id = $_POST["update_user"]; */
 
 	$sql->table="tbl_year";
 	$sql->condition="ORDER By academic_year DESC LIMIT 0,1";
@@ -56,7 +25,7 @@ if(isset($_POST["checkCorpEdit"]) and $_POST["checkCorpEdit"] == "1")
 
 		foreach ($_POST as $key => $val) {
 
-			if( $key == "checkCorpEdit" || $key == "id" || $key == "wel" || $key == "position" || $key == "job_description" || $key == "wel_value" || $key == "stu_count" ) continue;
+			if( $key == "checkCorpEdit" || $key == "id" || $key == "wel_id" || $key == "wel_type" || $key == "position" || $key == "job_description" || $key == "wel_value" || $key == "stu_count" || $key == "major_id"  || $key == "student_amount" ) continue;
 
 			$field .= !empty($field) ? "," : "";
 			$field .= "{$key}";
@@ -78,7 +47,7 @@ if(isset($_POST["checkCorpEdit"]) and $_POST["checkCorpEdit"] == "1")
 		$_POST["update_date"] = date("c");
 		foreach ($_POST as $key => $val) {
 			
-			if( $key == "checkCorpEdit" || $key == "id" || $key == "wel" || $key == "position" || $key == "job_description" || $key == "wel_value" || $key == "stu_count" ) continue;
+			if( $key == "checkCorpEdit" || $key == "id" || $key == "wel_id" || $key == "wel_type" || $key == "position" || $key == "job_description" || $key == "wel_value" || $key == "stu_count" || $key == "major_id"  || $key == "student_amount" ) continue;
 
 			$data .= !empty($data) ? "," : "";
 			$data .= "{$key}='{$val}'"; 
@@ -108,46 +77,39 @@ if(isset($_POST["checkCorpEdit"]) and $_POST["checkCorpEdit"] == "1")
 			$sql->field="corp_id,pos_name,job_description,stu_count";
 			$sql->value="'{$id}','{$_POST["job_description"][$key]}','{$_POST["stu_count"][$key]}'";
 		}
-		/* $count = count($_POST["position"]);
-		for($i=0;$i<=$count;$i++)
-		{
-			if(!empty($_POST["position"][$i]) and !empty($_POST["stu_count"][$i]))
-			{
-				$name = $_POST["position"][$i];
-				$job_description = $_POST["job_description"][$i];
-				$stu_count = $_POST["stu_count"][$i];
-				$sql->table="tbl_position";
-				$sql->field="corp_id,pos_name,job_description,stu_count";
-				$sql->value="'$id','$name','$job_description','$stu_count'";
-				$sql->insert();
-			}
-		} */
 		////////////////////////////////////////
-		if(isset($_POST["wel"])) 
+		if(isset($_POST["wel_id"])) 
 		{
 			$sql->table="tbl_corp_welfare";
 			$sql->condition="WHERE corp_id={$id}";
 			$sql->delete();
 
-			foreach ($_POST["wel"] as $key => $value) {
+			foreach ($_POST["wel_id"] as $key => $value) {
+
+				if( empty($_POST["wel_type"][$key]) ) continue;
 
 				$sql->table="tbl_corp_welfare";
-				$sql->field="corp_id,wel_id,wel_value";
-				$sql->value="'{$id}','{$value}','{$_POST["wel_value"][$key]}'";
+				$sql->field="corp_id,wel_id,wel_type,wel_value";
+				$sql->value="'{$id}','{$value}','{$_POST["wel_type"][$key]}','{$_POST["wel_value"][$key]}'";
 				$sql->insert();
 			}
-			/* $countWel = count($_POST["wel"]);
-			for($x=0;$x<=$countWel;$x++)
-			{
-				if(!empty($_POST["wel_id"][$x]))
-				{
-					$wel_id = $_POST["wel_id"][$x];
-					$sql->table="tbl_corp_welfare";
-					$sql->field="corp_id,wel_id";
-					$sql->value="'$id','$wel_id'";
-					$sql->insert();
-				}
-			} */
+		}
+
+		if( !empty($_POST["major_id"]) ){
+
+			$sql->table="tbl_corp_majors";
+			$sql->condition="WHERE corp_id={$id}";
+			$sql->delete();
+
+			foreach ($_POST["major_id"] as $key => $value) {
+
+				if( empty($_POST["student_amount"][$key]) ) continue;
+
+				$sql->table="tbl_corp_majors";
+				$sql->field="corp_id,major_id,student_amount";
+				$sql->value="'{$id}', '{$value}', {$_POST["student_amount"][$key]}";
+				$sql->insert();
+			}
 		}
 		// $alert = "บันทึกข้อมูลสถานประกอบการของท่าน ในปีการศึกษา {$resultYear["academic_year"]} เรียบร้อยแล้ว";
 		// $location = "SE-CO-002.php?page=company&sub=coop_02";

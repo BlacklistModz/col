@@ -19,10 +19,9 @@ if(isset($_SESSION["user_id"]) and $_SESSION["user_id"] != "")
 
 $page_file = basename($_SERVER['PHP_SELF']);
 $page = $_GET["page"];
-$redirect = "$page_file?page=$page"; 
+$redirect = "{$page_file}?page={$page}"; 
 
-if(isset($_GET["sub"]))
-{
+if(isset($_GET["sub"])){
     $redirect.="&sub=".$_GET["sub"];
 }
 
@@ -42,7 +41,7 @@ if(!isset($_GET["page"]) or (empty($_GET["page"])))
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>ศูนย์สหกิจศึกษา มหาวิทยาลัยราชภัฏลำปาง</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <link rel="shortcut icon" href="img/favicon.png">
+    <link rel="shortcut icon" href="img/coopcenter.png">
     <!-- CSS Libralies -->
     
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -206,7 +205,7 @@ if(!isset($_GET["page"]) or (empty($_GET["page"])))
 
                                 <ul class="dropdown-menu">
 
-                                    <li class="<?php if($_GET['page']=="company" and $_GET['sub']=="corperation"){ echo "active"; } ?>"><a href="corporation.php?page=company&sub=corporation"><i class="fa fa-gear"></i> ทะเบียนสถานประกอบการ</a>
+                                    <li class="<?php if($_GET['page']=="company" and $_GET['sub']=="corporation"){ echo "active"; } ?>"><a href="corporation.php?page=company&sub=corporation"><i class="fa fa-gear"></i> ทะเบียนสถานประกอบการ</a>
                                     </li>
                                     
                                     <li class="<?php if($_GET['page']=="company" and $_GET['sub']=="coop_02"){ echo "active"; } ?>"><a href="SE-CO-002.php?page=company&sub=coop_02"><i class="fa fa-gear"></i> แบบเสนองานสหกิจศึกษา</a>

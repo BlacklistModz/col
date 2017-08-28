@@ -20,15 +20,15 @@ if(class_exists('SQLiManager') === false)
 		var $deleteAlias;
 		public function SQLiManager()
 		{
-			// $strHost = "mysql.hostinger.in.th";
-			// $strUser = "u900057577_55105";
-			// $strPassword = "41qu[EtndrM#>C|sWZ";
-			// $db = "u900057577_55105";
+			// $strHost = "localhost";
+			// $strUser = "root";
+			// $strPassword = "";
+			// $db = "col";
 			// 
 			$strHost = "localhost";
-			$strUser = "root";
-			$strPassword = "";
-			$db = "col";
+			$strUser = "cooplpru";
+			$strPassword = "cool2316";
+			$db = "cooplprudb";
 
 			$this->connect = mysqli_connect($strHost,$strUser,$strPassword,$db);
 			if(!$this->connect)

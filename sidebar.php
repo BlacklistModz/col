@@ -25,6 +25,6 @@
             <div class="col-xs-12 col-sm-9">
                 <section id="search">
                     <marquee class="text-slide" behavior="scroll" scrollamount="2" scrolldelay="1" onmouseover="this.stop()" onmouseout="this.start()">
-                        <span style="white-space: nowrap;">สหกิจศึกษา สาขาวิชาวิศวกรรมซอฟต์แวร์ มหาวิทยาลัยราชภัฏลำปาง ยินดีต้อนรับ</span>
+                        <span style="white-space: nowrap;">ศูนย์สหกิจศึกษา มหาวิทยาลัยราชภัฏลำปาง ยินดีต้อนรับ</span>
                     </marquee>
                 </section>

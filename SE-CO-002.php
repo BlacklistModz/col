@@ -499,6 +499,7 @@ $resultUpdate = mysqli_fetch_assoc($queryUpdate);
                                                                 $query_cw = $sql->select();
                                                                 $result_cw = mysqli_fetch_assoc($query_cw);
 
+                                                                if( empty($result_cw["wel_type"]) ) $ck1 = ' checked="1"';
                                                                 if( $result_cw["wel_type"] == 1 ) $ck1 = ' checked="1"';
                                                                 if( $result_cw["wel_type"] == 2 ) $ck2 = ' checked="2"';
                                                                 if( $result_cw["wel_type"] == 3 ) $ck3 = ' checked="3"';
@@ -567,6 +568,40 @@ $resultUpdate = mysqli_fetch_assoc($queryUpdate);
                                                         </label>
                                                         <div class="col-md-6">
                                                             <input type="text" class="form-control" name="welfare" value="<?php echo $resultCorp["welfare"]; ?>" placeholder="(โปรดระบุ เช่น อาหาร ชุดทํางาน)" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label class="control-label col-md-4">การคัดเลือกนักศึกษาเขาปฏิบัติงาน
+                                                            <span class="required"> </span>
+                                                        </label>
+                                                        <?php
+                                                        $select_1 = '';
+                                                        $select_2 = '';
+                                                        if( empty($resultCorp["corp_select_status"]) ) $select_1 = ' checked="1"';
+                                                        if( $resultCorp["corp_select_status"] == 1 ) $select_1 = ' checked="1"';
+                                                        if( $resultCorp["corp_select_status"] == 2 ) $select_2 = ' checked="1"';
+                                                        ?>
+                                                        <div class="col-md-6">
+                                                            <div class="md-radio-inline">
+                                                                <div class="md-radio form-inline">
+                                                                    <input type="radio" id="radio_select1" name="corp_select_status" value="1" class="md-radiobtn" data-title="ต้องการคัดเลือกนักศึกษาเอง" <?=$select_1?>/>
+                                                                    <label for="radio_select1">
+                                                                        <span></span>
+                                                                        <span class="check"></span>
+                                                                        <span class="box"></span> ต้องการคัดเลือกนักศึกษาเอง
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                            <div class="md-radio-inline">
+                                                                <div class="md-radio form-inline">
+                                                                    <input type="radio" id="radio_select2" name="corp_select_status" value="2" class="md-radiobtn" data-title="ไม่ต้องการคัดเลือกนักศึกษา แต่ให้มหาวิทยาลัยเลือกให้" <?=$select_2?>/>
+                                                                    <label for="radio_select2">
+                                                                        <span></span>
+                                                                        <span class="check"></span>
+                                                                        <span class="box"></span> ไม่ต้องการคัดเลือกนักศึกษา แต่ให้มหาวิทยาลัยเลือกให้
+                                                                    </label>
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>

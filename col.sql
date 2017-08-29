@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2017 at 03:29 PM
+-- Generation Time: Aug 29, 2017 at 07:29 PM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -146,7 +146,7 @@ CREATE TABLE `tbl_authentication` (
 
 INSERT INTO `tbl_authentication` (`id`, `username`, `password`, `name`, `status_id`, `picture`, `create_date`, `accept_year_id`, `last_login`, `IP_login`) VALUES
 (1, 'admin', '123456', 'พชร นันทอาภา', 1, 'Profile_2017-08-18-15-17-12_5996a28857eb76.95578751.jpg', '2016-10-10', 0, '2017-08-28 20:21:40', '::1'),
-(29, 'sombra', '1234', 'พชร นันทอาภา', 3, 'Profile_2016-11-03-14-17-47_581ae49b2582d8.27302092.PNG', '2016-11-03', 2, '2017-08-28 19:24:35', '::1'),
+(29, 'sombra', '1234', 'พชร นันทอาภา', 3, 'Profile_2016-11-03-14-17-47_581ae49b2582d8.27302092.PNG', '2016-11-03', 2, '2017-08-30 00:13:20', '::1'),
 (30, '55122660114', '1234', 'พชร นันทอาภา', 4, 'Profile_2016-11-29-15-01-24_583d35d46d6135.42294741.JPG', '2016-11-03', 2, '2016-11-29 13:27:57', '223.204.208.220'),
 (44, 'test1', '123456', 'Pachara Nuntharrpa', 0, 'Profile_2016-11-18-12-35-04_582e9308d3b3b7.00084064.jpg', '2016-11-18', 0, '0000-00-00 00:00:00', ''),
 (45, 'xblacklistz', '123456789', 'พชร นันทอาภา', 3, 'Profile_2016-11-25-19-42-16_583831a87f8934.23667022.PNG', '2016-11-25', 2, '0000-00-00 00:00:00', ''),
@@ -189,20 +189,21 @@ CREATE TABLE `tbl_corporation` (
   `update_date` date NOT NULL,
   `update_user` int(11) NOT NULL,
   `year_id` int(11) NOT NULL,
-  `session_id` varchar(32) NOT NULL
+  `session_id` varchar(32) NOT NULL,
+  `corp_select_status` int(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_corporation`
 --
 
-INSERT INTO `tbl_corporation` (`id`, `user_id`, `name_th`, `name_en`, `address`, `province_id`, `zip_code`, `phone`, `fax`, `email`, `business_type`, `emp_count`, `work_time`, `manager_name`, `mjob_position`, `major_require`, `stu_academic`, `stu_features`, `staff_name`, `sjob_position`, `division`, `tel`, `practice_start`, `practice_end`, `compensation`, `compensation_status`, `welfare`, `update_date`, `update_user`, `year_id`, `session_id`) VALUES
-(3, 29, 'Sombra Overwatch CO,Ltd', 'Sombra Overwatch CO,Ltd', 'ตามบัตรประชาชน', 1, '10120', '0888888888', '0888888888', 'blacklistmodz.ton@gmail.com', 'Software House', 4, 40, 'พชร นันทอาภา', 'ทำทุกอย่าง', 'วิศวกรรมซอฟต์แวร์,วิทยาการคอมพิว', '', '-> ขยัน\r\n-> มีความอดทน\r\n-> มีความเป็นผู้นำ', 'จักรกฤษ แปงเมือง', 'พนักงานขับรถ', 'ซ่อมบำรุง', '0992723554', '1', '4', '200', 0, '', '2016-11-03', 29, 1, '2cr5ssj4pdeo5qk8r03je4l9b3'),
-(4, 29, 'Sombra Overwatch CO,Ltd', 'Sombra Overwatch CO,Ltd', '414 ม.4 ซ.3 ต.ท่าผา อ.เกาะคา', 40, '52130', '0888888888', '0888888888', 'gg@gg.com', 'Software House', 4, 40, 'พชร นันทอาภา', 'ทำทุกอย่าง', 'วิศวกรรมซอฟต์แวร์,วิทยาการคอมพิว', '', '-> ขยัน\r\n-> มีความอดทน\r\n-> มีความเป็นผู้นำ', 'จักรกฤษ แปงเมือง', 'พนักงานขับรถ', 'ซ่อมบำรุง', '0992723554', '1', '4', '200', 0, '', '2017-08-28', 29, 2, ''),
-(8, 44, 'Hacking System OW LO,Ltd', '', '', 0, '', '088888888', '088888888', 'blacklistmodz.ton@gmail.com', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '0000-00-00', 0, 0, '1i7kas9es2b80tmlilnll9uof4'),
-(10, 46, 'Smile IT Solution', '', '', 0, '', '0992723554', '992723554', 'bigsofteng@gmail.com1', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '0000-00-00', 0, 0, 'tof5c04c20nv053t0c199mc864'),
-(11, 47, 'Smile', 'จักรกฤษ แปงเมือง', '204 หมู่ 11 ต.เสริมขวา\r\nอ.เสริมงาม', 40, '52210', '992723554', '992723554', 'bigsofteng@gmail.com', '์Network', 2, 2, 'จักรกฤษ แปงเมือง', 'นั้นสิ', '1234', '', '1234', 'จักรกฤษ แปงเมือง', 'นั้นสิ', 'อะไรนะ', '0992723554', '1', '6', '200', 0, '', '2016-11-28', 47, 0, 'tof5c04c20nv053t0c199mc864'),
-(12, 47, 'Smile', 'จักรกฤษ แปงเมือง', '204 หมู่ 11 ต.เสริมขวา\r\nอ.เสริมงาม', 40, '52210', '992723554', '992723554', '', '์Network', 2, 2, 'จักรกฤษ แปงเมือง', 'นั้นสิ', '1234', '', '1234', 'จักรกฤษ แปงเมือง', 'นั้นสิ', 'อะไรนะ', '0992723554', '1', '6', '200', 0, '', '2016-11-28', 47, 2, '');
+INSERT INTO `tbl_corporation` (`id`, `user_id`, `name_th`, `name_en`, `address`, `province_id`, `zip_code`, `phone`, `fax`, `email`, `business_type`, `emp_count`, `work_time`, `manager_name`, `mjob_position`, `major_require`, `stu_academic`, `stu_features`, `staff_name`, `sjob_position`, `division`, `tel`, `practice_start`, `practice_end`, `compensation`, `compensation_status`, `welfare`, `update_date`, `update_user`, `year_id`, `session_id`, `corp_select_status`) VALUES
+(3, 29, 'Sombra Overwatch CO,Ltd', 'Sombra Overwatch CO,Ltd', 'ตามบัตรประชาชน', 1, '10120', '0888888888', '0888888888', 'blacklistmodz.ton@gmail.com', 'Software House', 4, 40, 'พชร นันทอาภา', 'ทำทุกอย่าง', 'วิศวกรรมซอฟต์แวร์,วิทยาการคอมพิว', '', '-> ขยัน\r\n-> มีความอดทน\r\n-> มีความเป็นผู้นำ', 'จักรกฤษ แปงเมือง', 'พนักงานขับรถ', 'ซ่อมบำรุง', '0992723554', '1', '4', '200', 0, '', '2016-11-03', 29, 1, '2cr5ssj4pdeo5qk8r03je4l9b3', 0),
+(4, 29, 'Sombra Overwatch CO,Ltd', 'Sombra Overwatch CO,Ltd', '414 ม.4 ซ.3 ต.ท่าผา อ.เกาะคา', 40, '52130', '0888888888', '0888888888', 'gg@gg.com', 'Software House', 4, 40, 'พชร นันทอาภา', 'ทำทุกอย่าง', 'วิศวกรรมซอฟต์แวร์,วิทยาการคอมพิว', '', '-> ขยัน\r\n-> มีความอดทน\r\n-> มีความเป็นผู้นำ', 'จักรกฤษ แปงเมือง', 'พนักงานขับรถ', 'ซ่อมบำรุง', '0992723554', '1', '4', '200', 0, '', '2017-08-28', 29, 2, '', 0),
+(8, 44, 'Hacking System OW LO,Ltd', '', '', 0, '', '088888888', '088888888', 'blacklistmodz.ton@gmail.com', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '0000-00-00', 0, 0, '1i7kas9es2b80tmlilnll9uof4', 0),
+(10, 46, 'Smile IT Solution', '', '', 0, '', '0992723554', '992723554', 'bigsofteng@gmail.com1', '', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '0000-00-00', 0, 0, 'tof5c04c20nv053t0c199mc864', 0),
+(11, 47, 'Smile', 'จักรกฤษ แปงเมือง', '204 หมู่ 11 ต.เสริมขวา\r\nอ.เสริมงาม', 40, '52210', '992723554', '992723554', 'bigsofteng@gmail.com', '์Network', 2, 2, 'จักรกฤษ แปงเมือง', 'นั้นสิ', '1234', '', '1234', 'จักรกฤษ แปงเมือง', 'นั้นสิ', 'อะไรนะ', '0992723554', '1', '6', '200', 0, '', '2016-11-28', 47, 0, 'tof5c04c20nv053t0c199mc864', 0),
+(12, 47, 'Smile', 'จักรกฤษ แปงเมือง', '204 หมู่ 11 ต.เสริมขวา\r\nอ.เสริมงาม', 40, '52210', '992723554', '992723554', '', '์Network', 2, 2, 'จักรกฤษ แปงเมือง', 'นั้นสิ', '1234', '', '1234', 'จักรกฤษ แปงเมือง', 'นั้นสิ', 'อะไรนะ', '0992723554', '1', '6', '200', 0, '', '2016-11-28', 47, 2, '', 0);
 
 -- --------------------------------------------------------
 

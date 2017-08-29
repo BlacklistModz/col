@@ -442,7 +442,7 @@ $resultUpdate = mysqli_fetch_assoc($queryUpdate);
                                             <div class="col-md-8">
                                                 <div class="md-radio-inline">
                                                     <div class="md-radio">
-                                                        <input type="radio" id="radio1" name="compensation_status" value="0" data-title="ไม่มี" class="md-radiobtn" <?php if($resultCorp["compensation_status"] == "0") { echo "checked"; } ?> required />
+                                                        <input type="radio" id="radio1" name="compensation_status" value="0" data-title="ไม่มี" class="md-radiobtn" <?=(empty($resultCorp["compensation_status"]) ? "checked" : "")?> required />
                                                         <label for="radio1">
                                                             <span></span>
                                                             <span class="check"></span>

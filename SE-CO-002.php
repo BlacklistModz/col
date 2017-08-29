@@ -439,25 +439,26 @@ $resultUpdate = mysqli_fetch_assoc($queryUpdate);
                                             <label class="control-label col-md-4">ค่าตอบแทน
                                                 <span class="required"> * </span>
                                             </label>
-
-                                            <div class="col-md-3">
-                                                <input type="text" class="form-control" name="compensation" value="<?php echo $resultCorp["compensation"]; ?>" placeholder="ค่าตอบแทนของนักศึกษา" required />
-                                            </div>
-                                            <div class="col-md-3">
+                                            <div class="col-md-8">
                                                 <div class="md-radio-inline">
                                                     <div class="md-radio">
-                                                        <input type="radio" id="radio1" name="compensation_status" value="0" data-title="บาท/วัน" class="md-radiobtn" <?php if($resultCorp["compensation_status"] == "0") { echo "checked"; } ?> required />
+                                                        <input type="radio" id="radio1" name="compensation_status" value="0" data-title="ไม่มี" class="md-radiobtn" <?php if($resultCorp["compensation_status"] == "0") { echo "checked"; } ?> required />
                                                         <label for="radio1">
                                                             <span></span>
                                                             <span class="check"></span>
-                                                            <span class="box"></span> บาท/วัน </label>
+                                                            <span class="box"></span> ไม่มี </label>
                                                         </div>
-                                                        <div class="md-radio">
-                                                            <input type="radio" id="radio2" name="compensation_status" value="1" data-title="บาท/เดือน" class="md-radiobtn" <?php if($resultCorp["compensation_status"] == "1") { echo "checked"; } ?> required />
+                                                    </div>
+                                                    <div class="md-radio-inline">
+                                                        <div class="md-radio form-inline">
+                                                            <input type="radio" id="radio2" name="compensation_status" value="1" data-title="มี" class="md-radiobtn" <?php if($resultCorp["compensation_status"] == "1") { echo "checked"; } ?> required />
                                                             <label for="radio2">
                                                                 <span></span>
                                                                 <span class="check"></span>
-                                                                <span class="box"></span> บาท/เดือน </label>
+                                                                <span class="box"></span> มี 
+                                                            </label>
+                                                            <input type="text" class="form-control" name="compensation" value="<?php echo $resultCorp["compensation"]; ?>" placeholder="" style="width: 80px;" id="compensation" <?php if($resultCorp["compensation_status"] == "0") { echo "disabled"; } ?>/>
+                                                                <span class="box"> บาท/เดือน</span>
                                                             </div>
                                                         </div>
                                                         <div id="form_compensation_status_error"> </div>
@@ -809,3 +810,13 @@ $resultUpdate = mysqli_fetch_assoc($queryUpdate);
                 <script src="js/form-wizard.min.js" type="text/javascript"></script>
                 <script src="js/messages_th.min.js" type="text/javascript"></script>
                 <script src="js/SE-CO-002.js" type="text/javascript"></script>
+                <script type="text/javascript">
+                    $("#radio1").click(function(){
+                        $("#compensation").attr("disabled", true);
+                        $("#compensation").val("");
+                    });
+
+                    $("#radio2").click(function(){
+                        $("#compensation").attr("disabled", false);
+                    })
+                </script>

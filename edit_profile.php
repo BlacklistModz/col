@@ -9,6 +9,7 @@ if(isset($_POST["checkProfile"]) and $_POST["checkProfile"] == "1")
 {
 	$pro_id = $_POST["id"];
 	$name = $_POST["name"];
+
 	$password_old = mysqli_real_escape_string($sql->connect,(trim($_POST["password_old"])));
 	$password = mysqli_real_escape_string($sql->connect,(trim($_POST["password"])));
 
@@ -37,22 +38,31 @@ if(isset($_POST["checkProfile"]) and $_POST["checkProfile"] == "1")
 		@unlink("upload/profile/".$result["picture"]);
 	}
 
-	#Change Password
-	if( !empty($password) ){
-		$sql->table="tbl_authentication";
-		$sql->value="password='$password',name='$name',picture='$new_image_name'";
-		$sql->condition="WHERE id='$pro_id'";
-		if ($sql->update())
-		{
-			echo "1";
+	$sql->table="tbl_authentication";
+	$sql->value="name='$name',picture='$new_image_name'";
+	$sql->condition="WHERE id={$pro_id}";
+	if( $sql->update() ){
+
+		#Change Password
+		if( !empty($password) ){
+			$sql->table="tbl_authentication";
+			$sql->value="password='$password'";
+			$sql->condition="WHERE id='$pro_id'";
+			if ($sql->update())
+			{
+				echo "1";
+			}
+			else
+			{
+				echo "3";
+			}
 		}
-		else
-		{
-			echo "3";
+		else{
+			echo "1";
 		}
 	}
 	else{
-		echo "1";
+		echo "3";
 	}
 }
 ?>

@@ -1,6 +1,16 @@
 <?php
 include("../header.php");
 include("../sidebar.php");
+
+$id = $_GET["id"];
+$sql->table="tbl_year";
+$sql->condition="WHERE id={$id}";
+$query = $sql->select();
+
+$numRow = mysqli_num_rows($query);
+if( empty($numRow) || $numRow > 1 ) header("index.php?page={$_GET["page"]}");
+
+$result = mysqli_fetch_assoc($query);
 ?>
 <link rel="stylesheet" type="text/css" href="../../css/input-form-wizard.css">
 <link rel="stylesheet" type="text/css" href="../../css/cms-forminput.css">
@@ -35,7 +45,7 @@ include("../sidebar.php");
 		</ol>
 	</section>
 	<section class="content">
-		<form class="form-horizontal" action="do_add.php?page=<?php echo $_GET["page"]; ?>" name="form_student" method="POST"  enctype="multipart/form-data">
+		<form class="form-horizontal" action="do_add.php?page=<?php echo $_GET["page"]; ?>&wid=<?php echo $_GET["wid"]; ?>" name="form_student" method="POST"  enctype="multipart/form-data">
 			<div class="row">
 				<div class="col-md-12">
 					<div class="box box-warning">
@@ -59,7 +69,7 @@ include("../sidebar.php");
 																<span class="required"> * </span>
 															</label>
 															<div class="col-md-4">
-																<input type="text" name="academic_year" class="form-control" placeholder="ปีการศึกษา" required />
+																<input type="text" name="academic_year" class="form-control" placeholder="ปีการศึกษา" required value="<?=$result["academic_year"]?>"/>
 															</div>
 														</div>
 														<div class="form-group">
@@ -80,6 +90,7 @@ include("../sidebar.php");
 							<div class="box-footer">
 								<a href="index.php?page=<?php echo $_GET["page"]; ?>" class="btn btn-danger pull-left">ยกเลิก</a>
 								<button type="submit" id="btnSubmit" class="btn green button-submit pull-right"><i class="fa fa-check"></i> เพิ่มปีการศึกษา</button>
+								<input type="hidden" name="id" value="<?=$result["id"]?>" />
 								<input type="hidden" name="checkSubmit" value="1" />
 							</div>
 						</div>

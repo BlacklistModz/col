@@ -101,7 +101,7 @@
         </li>
         <li class="<?php if($_GET["page"] == "year") { echo "active"; } ?>">
             <a href="../year/index.php?page=year"><i class="fa fa-graduation-cap" aria-hidden="true"></i>
-                <span>จัดการปีการศึกษา</span>
+                <span>จัดการปีการศึกษา/ภาคเรียน</span>
                 <!-- <span class="pull-right-container"></span> -->
             </a>
         </li>

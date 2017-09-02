@@ -1,5 +1,6 @@
 <?php
 include("header.php");
+include("class/DateThai.php");
 
 if(!isset($resultUser["status_id"]) or ($resultUser["status_id"] !="3"))
 {
@@ -397,6 +398,41 @@ $resultUpdate = mysqli_fetch_assoc($queryUpdate);
                                             <label class="control-label col-md-4">ระยะเวลาที่ต้องการให้นักศึกษาไปปฏิบัติงาน
                                                 <span class="required"> * </span>
                                             </label>
+                                            <div class="col-md-8">
+                                            <?php 
+                                            $sql->table="tbl_term";
+                                            $sql->condition="WHERE term_year_id={$resultUpdate["id"]}";
+                                            $query_term = $sql->select();
+                                            $num_t = 0;
+                                            while($rs_term = mysqli_fetch_assoc($query_term)) {
+                                                $num_t++;
+                                                $start = DateThai($rs_term["term_start"], true);
+                                                $end = DateThai($rs_term["term_end"], true);
+                                                $term = "{$start} - {$end}";
+                                            ?>
+                                                <div class="md-radio-inline">
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="radio-term<?=$num_t?>" name="term_id" value="<?=$rs_term["term_id"]?>" data-title="ภาคเรียนที่ : <?=$rs_term["term_name"]?> (<?=$term?>)" <?=($rs_term["term_id"]==$resultCorp["term_id"] ? 'checked="1"' : '')?> class="md-radiobtn" required />
+                                                        <label for="radio-term<?=$num_t?>">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> ภาคเรียนที่ : <?=$rs_term["term_name"]?> (<?=$term?>)
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            <?php } ?>
+                                                <div class="md-radio-inline">
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="radio-term0" name="term_id" value="0" data-title="ทุกภาคเรียน" <?=(empty($resultCorp["term_id"]) ? ' checked="1"' : '')?> class="md-radiobtn" required />
+                                                        <label for="radio-term0">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> ทุกภาคเรียน
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <?php if( 1==2 ) { ?>
                                             <div class="col-md-3 select-mounth-bottom">
 
                                                 <div class="input-group select2-bootstrap-prepend">
@@ -434,6 +470,7 @@ $resultUpdate = mysqli_fetch_assoc($queryUpdate);
                                                     </select>
                                                 </div>
                                             </div>
+                                            <?php } ?>
                                         </div>
                                         <div class="form-group">
                                             <label class="control-label col-md-4">ค่าตอบแทน

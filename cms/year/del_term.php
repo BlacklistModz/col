@@ -1,0 +1,1 @@
+del_term.php

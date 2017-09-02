@@ -9,12 +9,12 @@ $query = $sql->select();
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1>
-			จัดการรูปภาพสไลด์
-			<small>เพิ่ม-ลบ/แก้ไข รูปภาพสไลด์</small>
+			จัดการปีการศึกษา
+			<small>เพิ่ม-ลบ/แก้ไข ปีการศึกษา</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="fa fa-dashboard"></i> หน้าหลัก</a></li>
-			<li class="active">จัดการรูปภาพสไลด์</li>
+			<li class="active">จัดการปีการศึกษา</li>
 		</ol>
 	</section>
 	<section class="content">
@@ -35,8 +35,9 @@ $query = $sql->select();
 								<thead>
 									<tr>
 										<th width="5%">ลำดับ</th>
-										<th width="30%">ปีการศึกษา</th>
-										<th width="10%">จัดการ</th>
+										<th width="70%">ปีการศึกษา</th>
+										<th width="10%">จำนวนภาคเรียน</th>
+										<th width="15%">จัดการ</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -47,8 +48,16 @@ $query = $sql->select();
 										?>
 										<tr>
 											<td align="center"><?php echo $num; ?></td>
-											<td>ปีการศึกษา <?php echo $result["academic_year"]; ?></td>
+											<td><a href="index_term.php?page=<?=$_GET["page"]?>&id=<?=$result["id"]?>">ปีการศึกษา <?php echo $result["academic_year"]; ?></a></td>
+											<td class="text-center">
+												<?php 
+												$sql->table="tbl_term";
+												$sql->condition="WHERE term_year_id={$result["id"]}";
+												echo mysqli_num_rows($sql->select());
+												?>
+											</td>
 											<td align="center">
+												<a href="add_term.php?page=<?=$_GET["page"]?>&id=<?=$result["id"]?>" class="btn btn-primary">เพิ่มภาคเรียน</a>
 												<a href="edit.php?page=<?php echo $_GET["page"] ?>&id=<?php echo $result["id"]; ?>" class="btn btn-warning">แก้ไข</a>
 												<a href="do_delete.php?page=<?php echo $_GET["page"]; ?>&id=<?php echo $result["id"]; ?>" class="btn btn-danger" onclick="return confirm('คุณต้องการลบปีการศึกษา <?php echo $result["academic_year"]; ?> ใช่หรือไม่ ?')">ลบ</a>
 											</td>

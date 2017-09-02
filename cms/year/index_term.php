@@ -19,8 +19,8 @@ $query = $sql->select();
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1>
-			จัดการภาคเรียน
-			<small>เพิ่ม-ลบ/แก้ไข รูปภาพสไลด์</small>
+			จัดการภาคเรียน (ปีการศึกษา <?=$rs_year["academic_year"]?>)
+			<small>เพิ่ม-ลบ/แก้ไข ภาคเรียน</small>
 		</h1>
 		<ol class="breadcrumb">
 			<li><a href="#"><i class="fa fa-dashboard"></i> หน้าหลัก</a></li>

@@ -54,4 +54,26 @@ $(document).ready(function() {
     		});
     	});
     }
+
+    $("#radio1").click(function(){
+        $("#compensation2").attr("disabled", true);
+        $("#compensation3").attr("disabled", true);
+
+        $("#compensation2").val("");
+        $("#compensation3").val("");
+    });
+
+    $("#radio2").click(function(){
+        $("#compensation2").attr("disabled", false);
+
+        $("#compensation3").attr("disabled", true);
+        $("#compensation3").val("");
+    });
+
+    $("#radio3").click(function(){
+        $("#compensation3").attr("disabled", false);
+
+        $("#compensation2").attr("disabled", true);
+        $("#compensation2").val("");
+    });
 });

@@ -527,3 +527,40 @@ $("body").on("focus", "input[data-date='dtp']", function() {
     $(".dateYear").datepicker({ autoclose: true, maskInput: true, format: "yyyy", viewMode: "years", minViewMode: "years" });
     $(".dateMonths").datepicker({ autoclose: true, maskInput: true, format: "MM yyyy", viewMode: "months", minViewMode: "months" });
 });
+
+// Function for Load Majors
+ 
+var sel_majors = $(".js-select-majors");
+$.fn.extend({
+    setMajor: function( fid, id=0 ){
+        $.ajax({
+            type: "GET",
+            url: "fn/majors.php",
+            data: ({ id:fid }),
+            dataType: "json",
+            success: function(json){
+                sel_majors.html("");
+                $.each(json, function(index, value) {
+                    if( id==value.major_id ) {
+                        sel_majors.append( $('<option>', {value: value.major_id, text: value.major_name, "data-id":value.major_id, "selected":1}) );
+                    }
+                    else{
+                        sel_majors.append( $('<option>', {value: value.major_id, text: value.major_name, "data-id":value.major_id}) );
+                    }
+                });
+            }
+        });
+    } 
+});
+
+var fid = $(".js-select-faculty").val();
+$(this).setMajor( fid );
+
+var mid = $(".js-input-majors").val();
+if( mid != 0 && mid != "" ){
+    $(this).setMajor( fid, mid );
+}
+
+$(".js-select-faculty").change(function(){
+    $(this).setMajor( $(this).val() );
+});

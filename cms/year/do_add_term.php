@@ -15,6 +15,7 @@ if(isset($_POST["checkSubmit"]) and $_POST["checkSubmit"] == "1"){
 		$field .= $key;
 
 		$value .= !empty($value) ? "," : "";
+		if( $key == "term_start" || $key == "term_end" ) $val = date("Y-m-d", strtotime($val));
 		$value .= "'{$val}'";
 	}
 

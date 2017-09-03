@@ -18,6 +18,8 @@ $query = $sql->select();
 ?>
 <link rel="stylesheet" type="text/css" href="../../css/input-form-wizard.css">
 <link rel="stylesheet" type="text/css" href="../../css/cms-forminput.css">
+<link rel="stylesheet" type="text/css" href="../../css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="../../css/jquery-ui-timepicker-addon.css">
 <style type="text/css">
 	.fileUpload {
 		position: relative;
@@ -101,10 +103,16 @@ $query = $sql->select();
 														<span class="required"> * </span>
 													</label>
 													<div class="col-md-2">
-														<input type="date" name="term_start" class="form-control" value="" required />
+														<div class="input-group">
+															<div class="input-group-addon">เริ่มต้น</div>
+															<input type="text" name="term_start" id="term_start" class="form-control" value="" required readonly placeholder="คลิกเพื่อเลือกเริ่มต้น" />
+														</div>
 													</div>
 													<div class="col-md-2">
-														<input type="date" name="term_end" class="form-control" value="" required />
+														<div class="input-group">
+															<div class="input-group-addon">สิ้นสุด</div>
+															<input type="text" name="term_end" id="term_end" class="form-control" value="" required readonly placeholder="คลิกเพื่อเลือกสิ้นสุด"/>
+														</div>
 													</div>
 												</div>
 
@@ -124,3 +132,7 @@ $query = $sql->select();
 			</section>
 		</div>
 		<?php include("../footer.php"); ?>
+		<script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-ui-timepicker-addon.js"></script>
+		<script type="text/javascript" src="../../js/jquery-ui-sliderAccess.js"></script>
+		<script type="text/javascript" src="../../js/jquery-start-end-date.js"></script>

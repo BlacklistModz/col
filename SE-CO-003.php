@@ -180,15 +180,15 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-6">
-                                                    <input type="text" class="form-control" name="class_year" value="<?php echo $resultUser["status_id"]; ?>" placeholder="ชั้นปี">
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-md-4">สาขาวิชา
-                                                    <span class="required"> * </span>
-                                                </label>
-                                                <div class="col-md-6">
-                                                    <input type="text" class="form-control" name="major" value="<?php echo $resultStudent["major"]; ?>" placeholder="ชื่อสาขาวิชา" required />
+                                                    <select class="form-control" name="class_year">
+                                                    <?php 
+                                                    for($i=1; $i<=5; $i++){
+                                                        $sel = "";
+                                                        if( $i == $resultUser["status_id"] ) $sel = ' selected="1"';
+                                                        echo '<option'.$sel.' value="'.$i.'">'.$i.'</option>';
+                                                    }
+                                                    ?>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -196,7 +196,31 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-6">
-                                                    <input type="text" class="form-control" name="faculty" value="<?php echo $resultStudent["faculty"]; ?>" placeholder="สังกัดคณะ" required />
+                                                    <?php
+                                                    $sql->table="tbl_faculty";
+                                                    $sql->condition="";
+                                                    $q_faculty = $sql->select();
+                                                    ?>
+                                                    <select name="faculty_id" class="form-control js-select-faculty" required>
+                                                        <?php 
+                                                        while($rs_faculty = mysqli_fetch_assoc($q_faculty)){
+                                                            $sel = "";
+                                                            if( $rs_faculty["faculty_id"] == $resultStudent["faculty_id"] ){
+                                                                $sel = ' selected="1"';
+                                                            }
+                                                            echo '<option'.$sel.' value="'.$rs_faculty["faculty_id"].'">'.$rs_faculty["faculty_name"].'</option>';
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4">สาขาวิชา
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-6">
+                                                   <select name="major_id" class="form-control js-select-majors" required></select>
+                                                   <input type="hidden" class="js-input-majors" value="<?=$resultStudent["major_id"]?>" />
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -234,14 +258,14 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                                 </div>
                                             </div>
 
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label class="control-label col-md-4">สถานที่เกิด
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-6">
                                                     <input type="text" class="form-control" name="birthplace" value="<?php echo $resultStudent["birthplace"]; ?>" placeholder="สถานที่เกิด" required />
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-4">วันเกิด
                                                     <span class="required"> * </span>
@@ -251,6 +275,27 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                                 </div>
                                             </div>
                                             <div class="form-group">
+                                                <label class="control-label col-md-4">จังหวัดที่เกิด
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-6">
+                                                    <?php 
+                                                    $sql->table="tbl_province";
+                                                    $sql->condition="";
+                                                    $q_province = $sql->select();
+                                                    ?>
+                                                    <select class="form-control" name="birth_province">
+                                                        <?php 
+                                                        while($province = mysqli_fetch_assoc($q_province)){
+                                                            $sel = "";
+                                                            if( $resultStudent["birth_province"] == $province["PROVINCE_ID"] ) $sel = ' selected="1"';
+                                                            echo '<option'.$sel.' value="'.$province["PROVINCE_ID"].'">'.$province["PROVINCE_NAME"].'</option>';
+                                                        }
+                                                        ?>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <!-- <div class="form-group">
                                                 <label class="control-label col-md-4">ส่วนสูง (cm)
                                                     <span class="required"> * </span>
                                                 </label>
@@ -265,7 +310,7 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                                 <div class="col-md-6">
                                                     <input type="text" class="form-control" name="weight" value="<?php echo $resultStudent["weight"]; ?>" placeholder="น้ำหนัก (กิโลกรัม)" required />
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-4">เลขที่บัตรประชาชน
                                                     <span class="required"> * </span>
@@ -274,7 +319,7 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                                     <input type="text" class="form-control" name="id_card" value="<?php echo $resultStudent["id_card"]; ?>" minlength="13" maxlength="13" placeholder="รหัสบัตรประจำตัวประชาชน" required />
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label class="control-label col-md-4">วันที่ออกบัตร
                                                     <span class="required"> * </span>
                                                 </label>
@@ -297,7 +342,7 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                                 <div class="col-md-6">
                                                     <input type="text" class="form-control" name="issued_at" value="<?php echo $resultStudent["issued_at"]; ?>" placeholder="สถานที่ออกบัตร" required />
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="form-group">
                                                 <label class="control-label col-md-4">ศาสนา
                                                     <span class="required"> * </span>
@@ -314,7 +359,7 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                                     <input type="text" class="form-control" name="nationality" value="<?php echo $resultStudent["nationality"]; ?>" placeholder="ระบุสัญชาติ" required />
                                                 </div>
                                             </div>
-                                            <div class="form-group">
+                                            <!-- <div class="form-group">
                                                 <label class="control-label col-md-4">ใบอนุญาตขับขี่รถยนต์
                                                     <span class="required"> * </span>
                                                 </label>
@@ -329,7 +374,47 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                                 <div class="col-md-6">
                                                     <input type="text" class="form-control dateTimePicker" name="expiry_driving" value="<?php if($resultStudent["expiry_driving"] != "0000-00-00") { echo DateOutSQL($resultStudent["expiry_driving"]); } ?>" data-date="dtp" placeholder="วันหมดอายุของใบอนุญาติขับขี่ฯ" readonly required />
                                                 </div>
+                                            </div> -->
+                                            <div class="form-group">
+                                                <label class="control-label col-md-4">เลือดกรุ๊ป
+                                                    <span class="required"> * </span>
+                                                </label>
+                                                <div class="col-md-6 md-radio-inline">
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="radio_A" name="blood_group" value="A" data-title="A" class="md-radiobtn" <?php if($resultStudent["blood_group"] == "A") { echo "checked"; } ?> />
+                                                        <label for="radio_A">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> กรุ๊ป A
+                                                        </label>
+                                                    </div>
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="radio_B" name="blood_group" value="B" data-title="B" class="md-radiobtn" <?php if($resultStudent["blood_group"] == "B") { echo "checked"; } ?> />
+                                                        <label for="radio_B">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> กรุ๊ป B
+                                                        </label>
+                                                    </div>
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="radio_AB" name="blood_group" value="AB" data-title="AB" class="md-radiobtn" <?php if($resultStudent["blood_group"] == "AB") { echo "checked"; } ?> />
+                                                        <label for="radio_AB">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> กรุ๊ป AB
+                                                        </label>
+                                                    </div>
+                                                    <div class="md-radio">
+                                                        <input type="radio" id="radio_O" name="blood_group" value="O" data-title="O" class="md-radiobtn" <?php if($resultStudent["blood_group"] == "O") { echo "checked"; } ?> />
+                                                        <label for="radio_O">
+                                                            <span></span>
+                                                            <span class="check"></span>
+                                                            <span class="box"></span> กรุ๊ป O
+                                                        </label>
+                                                    </div>
+                                                </div>
                                             </div>
+
                                             <div class="form-group">
                                                 <label class="control-label col-md-4">การเกณฑ์ทหาร
                                                     <span class="required"> * </span>
@@ -537,9 +622,9 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                                     <input type="text" class="form-control" name="email" value="<?php echo $resultStudent["email"]; ?>" placeholder="กรุณากรอกอีเมล์แอดเดรส" required />
                                                 </div>
                                             </div>
-                                            <h3 class="block headtext-set-center">บุคคลที่ติดต่อได้เวลาฉุกเฉิน</h3>
+                                            <h3 class="block headtext-set-center">เพื่อนสนิท/บุคคลที่ติดต่อได้เวลาฉุกเฉิน</h3>
                                             <div class="form-group">
-                                                <label class="control-label col-md-4">บุคคลที่สามารถติดต่อได้
+                                                <label class="control-label col-md-4">เพื่อนสนิท/บุคคลที่สามารถติดต่อได้
                                                     <span class="required"> * </span>
                                                 </label>
                                                 <div class="col-md-6">

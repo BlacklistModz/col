@@ -1,6 +1,7 @@
 <?php
 include("../header.php");
 include("../sidebar.php");
+include("../../class/DateSwitch.Bootstrap.php");
 
 $id = $_GET["id"];
 
@@ -19,6 +20,8 @@ $result = mysqli_fetch_assoc($query);
 ?>
 <link rel="stylesheet" type="text/css" href="../../css/input-form-wizard.css">
 <link rel="stylesheet" type="text/css" href="../../css/cms-forminput.css">
+<link rel="stylesheet" type="text/css" href="../../css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="../../css/jquery-ui-timepicker-addon.css">
 <style type="text/css">
 	.fileUpload {
 		position: relative;
@@ -104,13 +107,13 @@ $result = mysqli_fetch_assoc($query);
 													<div class="col-md-2">
 														<div class="input-group">
 														<div class="input-group-addon">เริ่ม</div>
-															<input type="date" name="term_start" class="form-control" value="<?=$result["term_start"]?>" required />
+															<input type="text" name="term_start" id="term_start" class="form-control" required readonly value="<?=DateOutSQL($result["term_start"])?>"/>
 														</div>
 													</div>
 													<div class="col-md-2">
 														<div class="input-group">
 														<div class="input-group-addon">สิ้นสุด</div>
-															<input type="date" name="term_end" class="form-control" value="<?=$result["term_end"]?>" required />
+															<input type="text" name="term_end" id="term_end" class="form-control" required readonly value="<?=DateOutSQL($result["term_end"])?>"/>
 														</div>
 													</div>
 												</div>
@@ -132,3 +135,7 @@ $result = mysqli_fetch_assoc($query);
 			</section>
 		</div>
 		<?php include("../footer.php"); ?>
+		<script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="../../js/jquery-ui-timepicker-addon.js"></script>
+		<script type="text/javascript" src="../../js/jquery-ui-sliderAccess.js"></script>
+		<script type="text/javascript" src="../../js/jquery-start-end-date.js"></script>

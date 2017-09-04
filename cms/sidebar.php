@@ -82,7 +82,7 @@
                 <li class="<?php if($_GET["page"] == "student_from" and $_GET["fid"] == "skill") { echo "active"; } ?>">
                     <a href="../skill/index.php?page=student_from&fid=skill"><i class="fa fa-circle-o"></i> จัดการความสามารถพิเศษ</a>
                 </li>
-                <li class="<?php if($_GET["page"] == "student_from" and $_GET["fid"] == "skill") { echo "active"; } ?>">
+                <li class="<?php if($_GET["page"] == "student_from" and $_GET["fid"] == "regjob") { echo "active"; } ?>">
                     <a href="../regjob/index.php?page=student_from&fid=regjob"><i class="fa fa-circle-o"></i> จัดการสิทธิ์การสมัครงาน</a>
                 </li>
             </ul>

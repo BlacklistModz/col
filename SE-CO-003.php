@@ -184,7 +184,7 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                                     <?php 
                                                     for($i=1; $i<=5; $i++){
                                                         $sel = "";
-                                                        if( $i == $resultUser["status_id"] ) $sel = ' selected="1"';
+                                                        if( $i == $resultStudent["class_year"] ) $sel = ' selected="1"';
                                                         echo '<option'.$sel.' value="'.$i.'">'.$i.'</option>';
                                                     }
                                                     ?>
@@ -754,14 +754,12 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                                 $edu++;
                                             }
                                             ?>
-
-                                            <h4 class="block headtext-set-center">การฝึกอบรม</h4>
-                                            <div class="col-md-12">
+                                            <!-- <div class="col-md-12">
                                                 <div class="headtext-set-center">              
                                                     <input class="btn btn-success" type="button" value="เพิ่มหัวข้ออบรม" id="addTraining" />
                                                 </div>
-                                            </div>
-                                            <div id="trainingBoxesGroup">
+                                            </div> -->
+                                            <!-- <div id="trainingBoxesGroup">
                                                 <?php 
                                                 $sql->table="tbl_training";
                                                 $sql->condition="WHERE stu_id='".$resultStudent["id"]."'";
@@ -846,7 +844,7 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                                 <?php
                                             }
                                             ?>
-                                        </div>
+                                        </div> -->
                                         <h3 class="block headtext-set-center">ความสามารถพิเศษ</h3>
 
                                         <?php 
@@ -927,7 +925,7 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                         }
                                         ?>
 
-                                        <h3 class="block headtext-set-center">ประสบการณ์การปฏิบัติงานและกิจกรรมนักศึกษา</h3>
+                                        <!-- <h3 class="block headtext-set-center">ประสบการณ์การปฏิบัติงานและกิจกรรมนักศึกษา</h3>
                                         <div class="col-md-12">
                                             <div class="headtext-set-center">              
                                                 <input class="btn btn-success" type="button" value="เพิ่มหัวข้อกิจกรรม" id="addExp" />
@@ -1053,7 +1051,35 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                         <?php
                                     }
                                     ?>
+                                </div> -->
+                                <h3 class="block headtext-set-center">กิจกรรมพิเศษ และ งานอดิเรก</h3>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">กิจกรรมพิเศษ
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-6">
+                                        <textarea name="activities" class="form-control" rows="3" placeholder="กิจกรรมพิเศษเช่น เป็นสมาชิกของสโมสร ชมรม หรือร่วมงานกับชมรม"><?=$resultStudent["activities"]?></textarea>
+                                    </div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">งานอดิเรก
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-6">
+                                    <textarea name="hobbies" class="form-control" rows="3" placeholder="งานอดิเรก"><?=$resultStudent["hobbies"]?></textarea>
+                                    </div>
+                                </div>
+
+                                <h3 class="block headtext-set-center">เหตุผลที่เข้าร่วมสหกิจ</h3>
+                                <div class="form-group">
+                                    <label class="control-label col-md-4">เหตุผล
+                                        <span class="required"> * </span>
+                                    </label>
+                                    <div class="col-md-6">
+                                    <textarea name="reason" class="form-control" rows="3" placeholder="เหตุผล"><?=$resultStudent["reason"]?></textarea>
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="tab-pane" id="tab4">
                                 <div class="alert alert-warning" style="text-align:center;color: #a94442;background-color: #f2dede;border-color: #ebccd1;">
@@ -1112,19 +1138,19 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                                 <p class="form-control-static" data-display="gender"></p>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label class="control-label col-md-6">สถานที่เกิด :</label>
                                             <div class="col-md-4">
                                                 <p class="form-control-static" data-display="birthdate"></p>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <label class="control-label col-md-6">วันเกิด :</label>
                                             <div class="col-md-4">
-                                                <p class="form-control-static" data-display="birthplace"></p>
+                                                <p class="form-control-static" data-display="birthdate"></p>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label class="control-label col-md-6">ส่วนสูง (cm) :</label>
                                             <div class="col-md-4">
                                                 <p class="form-control-static" data-display="height"></p>
@@ -1135,14 +1161,14 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                             <div class="col-md-4">
                                                 <p class="form-control-static" data-display="weight"></p>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <label class="control-label col-md-6">เลขที่บัตรประชาชน :</label>
                                             <div class="col-md-4">
                                                 <p class="form-control-static" data-display="id_card"></p>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <label class="control-label col-md-6">วันที่ออกบัตร :</label>
                                             <div class="col-md-4">
                                                 <p class="form-control-static" data-display="date_issued"></p>
@@ -1159,7 +1185,7 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                             <div class="col-md-4">
                                                 <p class="form-control-static" data-display="issued_at"></p>
                                             </div>
-                                        </div>
+                                        </div> -->
                                         <div class="form-group">
                                             <label class="control-label col-md-6">ศาสนา :</label>
                                             <div class="col-md-4">
@@ -1422,7 +1448,7 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                 <button type="submit" class="btn green button-submit"> บันทึก <i class="fa fa-check"></i></button>
                                 <input type="hidden" name="checkStuEdit" value="1" />
                                 <input type="hidden" name="id" value="<?php echo $resultStudent["id"]; ?>" />
-                                <input type="hidden" name="update_user" value="<?php echo $resultUser["id"]; ?>" />
+                                <input type="hidden" name="user_update" value="<?php echo $resultUser["id"]; ?>" />
                             </div>
                         </div>
                     </div>

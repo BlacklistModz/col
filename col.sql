@@ -1,9 +1,9 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.6.6
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2017 at 09:07 PM
+-- Generation Time: Sep 04, 2017 at 09:45 AM
 -- Server version: 5.6.24
 -- PHP Version: 5.6.8
 
@@ -145,9 +145,9 @@ CREATE TABLE `tbl_authentication` (
 --
 
 INSERT INTO `tbl_authentication` (`id`, `username`, `password`, `name`, `status_id`, `picture`, `create_date`, `accept_year_id`, `last_login`, `IP_login`) VALUES
-(1, 'admin', '123456', 'พชร นันทอาภา', 1, 'Profile_2017-08-18-15-17-12_5996a28857eb76.95578751.jpg', '2016-10-10', 0, '2017-09-03 13:31:23', '::1'),
+(1, 'admin', '123456', 'พชร นันทอาภา', 1, 'Profile_2017-08-18-15-17-12_5996a28857eb76.95578751.jpg', '2016-10-10', 0, '2017-09-04 13:24:11', '::1'),
 (29, 'sombra', '1234', 'พชร นันทอาภา', 3, 'Profile_2016-11-03-14-17-47_581ae49b2582d8.27302092.PNG', '2016-11-03', 2, '2017-09-02 19:38:37', '::1'),
-(30, '55122660114', '1234', 'พชร นันทอาภา', 4, 'Profile_2016-11-29-15-01-24_583d35d46d6135.42294741.JPG', '2016-11-03', 2, '2017-09-04 00:37:22', '::1'),
+(30, '55122660114', '1234', 'พชร นันทอาภา', 4, 'Profile_2016-11-29-15-01-24_583d35d46d6135.42294741.JPG', '2016-11-03', 2, '2017-09-04 13:20:43', '::1'),
 (44, 'test1', '123456', 'Pachara Nuntharrpa', 0, 'Profile_2016-11-18-12-35-04_582e9308d3b3b7.00084064.jpg', '2016-11-18', 0, '0000-00-00 00:00:00', ''),
 (45, 'xblacklistz', '123456789', 'พชร นันทอาภา', 3, 'Profile_2016-11-25-19-42-16_583831a87f8934.23667022.PNG', '2016-11-25', 2, '0000-00-00 00:00:00', ''),
 (47, 'bigsofteng', '1234', 'จักรกฤษ แปงเมือง', 3, 'Profile_2016-11-28-12-17-53_583bbe012145e8.79269552.jpg', '2016-11-28', 3, '2016-11-28 13:12:46', '::1');
@@ -631,6 +631,7 @@ CREATE TABLE `tbl_student` (
   `name_en` varchar(100) NOT NULL,
   `major_id` int(11) NOT NULL,
   `faculty_id` int(11) NOT NULL,
+  `class_year` int(1) NOT NULL,
   `gpa` varchar(4) NOT NULL,
   `gender` varchar(1) NOT NULL,
   `birthplace` varchar(50) NOT NULL,
@@ -670,15 +671,18 @@ CREATE TABLE `tbl_student` (
   `emer_phone` varchar(16) NOT NULL,
   `update_date` date NOT NULL,
   `user_update` int(11) NOT NULL,
-  `year_id` int(11) NOT NULL
+  `year_id` int(11) NOT NULL,
+  `activities` text NOT NULL,
+  `hobbies` text NOT NULL,
+  `reason` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `tbl_student`
 --
 
-INSERT INTO `tbl_student` (`id`, `user_id`, `name_en`, `major_id`, `faculty_id`, `gpa`, `gender`, `birthplace`, `birthdate`, `birth_province`, `blood_group`, `height`, `weight`, `id_card`, `date_issued`, `expiry_date`, `issued_at`, `religion`, `nationality`, `driving_license`, `expiry_driving`, `conscription`, `father_name`, `father_career`, `father_workplace`, `father_phone`, `mother_name`, `mother_career`, `mother_workplace`, `mother_phone`, `parent_address`, `parent_phone`, `permanent_address`, `permanent_phone`, `contact_address`, `contact_phone`, `mobile_phone`, `email`, `check_address`, `emer_name`, `emer_address`, `emer_phone`, `update_date`, `user_update`, `year_id`) VALUES
-(1, 30, 'Pachara Nunthaarpa', 1, 1, '3.32', 'M', 'โรงพยาบาลลำปาง', '2536-11-01', 40, 'A', '175', '95', '1529900668255', '2559-11-01', '2559-11-01', 'เทศบาลเกาะคา', 'พุทธ', 'ไทย', '1234567891', '2559-11-01', '1', 'ชัชวาลย์ นันทอาภา', 'รับราชการ', 'โรงเรียนเกาะคาวิทยาคม', '0861792233', 'อัญชลี นันทอาภา', 'รับราชการ', 'โรงเรียนไหล่หินวิทยาลัย', '0861875983', '414 ม.4 ซ.3 ต.ท่าผา อ.เกาะคา จ.ลำปาง 52130', '0861792233', '414 ม.4 ซ.3 ต.ท่าผา อ.เกาะคา จ.ลำปาง 52130', '0861875983', '', '', '0861875983', 'blacklistmodz.ton@gmail.com', '', 'ใครก็ได้', 'ไม่รู้เหมือนกัน', '555', '2016-11-29', 30, 2);
+INSERT INTO `tbl_student` (`id`, `user_id`, `name_en`, `major_id`, `faculty_id`, `class_year`, `gpa`, `gender`, `birthplace`, `birthdate`, `birth_province`, `blood_group`, `height`, `weight`, `id_card`, `date_issued`, `expiry_date`, `issued_at`, `religion`, `nationality`, `driving_license`, `expiry_driving`, `conscription`, `father_name`, `father_career`, `father_workplace`, `father_phone`, `mother_name`, `mother_career`, `mother_workplace`, `mother_phone`, `parent_address`, `parent_phone`, `permanent_address`, `permanent_phone`, `contact_address`, `contact_phone`, `mobile_phone`, `email`, `check_address`, `emer_name`, `emer_address`, `emer_phone`, `update_date`, `user_update`, `year_id`, `activities`, `hobbies`, `reason`) VALUES
+(1, 30, 'Pachara Nunthaarpa', 1, 1, 4, '3.32', 'M', 'โรงพยาบาลลำปาง', '2536-11-01', 40, 'A', '175', '95', '1529900668255', '2559-11-01', '2559-11-01', 'เทศบาลเกาะคา', 'พุทธ', 'ไทย', '1234567891', '2559-11-01', '1', 'ชัชวาลย์ นันทอาภา', 'รับราชการ', 'โรงเรียนเกาะคาวิทยาคม', '0861792233', 'อัญชลี นันทอาภา', 'รับราชการ', 'โรงเรียนไหล่หินวิทยาลัย', '0861875983', '414 ม.4 ซ.3 ต.ท่าผา อ.เกาะคา จ.ลำปาง 52130', '0861792233', '414 ม.4 ซ.3 ต.ท่าผา อ.เกาะคา จ.ลำปาง 52130', '0861875983', '414 ม.4 ซ.3 ต.ท่าผา อ.เกาะคา จ.ลำปาง 52130', '0861875983', '0861875983', 'blacklistmodz.ton@gmail.com', 'FA', 'ใครก็ได้', 'ไม่รู้เหมือนกัน', '555', '2017-09-04', 30, 2, '', '', '');
 
 -- --------------------------------------------------------
 
@@ -828,10 +832,10 @@ CREATE TABLE `tbl_stu_edu` (
 --
 
 INSERT INTO `tbl_stu_edu` (`id`, `stu_id`, `edu_id`, `edu_academy`, `edu_major`, `edu_level`, `edu_start`, `edu_end`, `edu_grade`) VALUES
-(13, 1, 1, 'เพ็ญจิตตพงษ์', '-', 'ประถม', '2553', '2553', '2.5'),
-(14, 1, 2, 'บุญวาทย์วิทยาลัย', '-', 'มัธยมต้น', '2554', '2554', '2.5'),
-(15, 1, 3, 'บุญวาทย์วิทยาลัย', 'ไทย อังกฤษ สังคม', 'มัธยมปลาย', '2555', '2555', '2.5'),
-(16, 1, 4, 'มหาวิทยาลัยราชภัฏลำปาง', 'วิศวกรรมซอฟต์แวร์', '-', '2555', '2559', '3.31');
+(20, 1, 4, 'มหาวิทยาลัยราชภัฏลำปาง', 'วิศวกรรมซอฟต์แวร์', '-', '2555', '2559', '3.31'),
+(19, 1, 3, 'บุญวาทย์วิทยาลัย', 'ไทย อังกฤษ สังคม', 'มัธยมปลาย', '2555', '2555', '2.5'),
+(17, 1, 1, 'เพ็ญจิตตพงษ์', '-', 'ประถม', '2553', '2553', '2.5'),
+(18, 1, 2, 'บุญวาทย์วิทยาลัย', '-', 'มัธยมต้น', '2554', '2554', '2.5');
 
 -- --------------------------------------------------------
 
@@ -982,11 +986,11 @@ CREATE TABLE `tbl_stu_skill` (
 --
 
 INSERT INTO `tbl_stu_skill` (`id`, `stu_id`, `sub_id`, `skill_point`) VALUES
-(16, 1, 1, 4),
-(17, 1, 2, 0),
-(18, 1, 3, 4),
-(19, 1, 4, 0),
-(20, 1, 5, 0);
+(25, 1, 5, 0),
+(24, 1, 4, 0),
+(23, 1, 3, 4),
+(22, 1, 2, 0),
+(21, 1, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -1447,7 +1451,7 @@ ALTER TABLE `tbl_stu_asswork_detail`
 -- AUTO_INCREMENT for table `tbl_stu_edu`
 --
 ALTER TABLE `tbl_stu_edu`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `tbl_stu_exp`
 --
@@ -1477,7 +1481,7 @@ ALTER TABLE `tbl_stu_send_detail`
 -- AUTO_INCREMENT for table `tbl_stu_skill`
 --
 ALTER TABLE `tbl_stu_skill`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `tbl_sub_skill`
 --

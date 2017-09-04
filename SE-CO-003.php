@@ -18,7 +18,9 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
 <link rel="stylesheet" type="text/css" href="css/select2-bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/input-form-wizard.css">
 <link rel="stylesheet" type="text/css" href="css/form-group.css">
-<link rel="stylesheet" type="text/css" href="css/datepicker3.css">
+<!-- <link rel="stylesheet" type="text/css" href="css/datepicker3.css"> -->
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui-timepicker-addon.css">
 <style type="text/css">
     .input-group .select2-container--bootstrap {
         width: 100% !important;
@@ -1468,5 +1470,11 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
 <script type="text/javascript" src="js/app.min.js"></script>
 <script type="text/javascript" src="js/form-wizard.min.js"></script>
 <script type="text/javascript" src="js/messages_th.min.js"></script>
-<script type="text/javascript" src="js/bootstrap-datepicker.js"></script>
+<!-- <script type="text/javascript" src="js/bootstrap-datepicker.js"></script> -->
 <script type="text/javascript" src="js/SE-CO-003.js"></script>
+<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="js/jquery-ui-sliderAccess.js"></script>
+<script type="text/javascript">
+    $(".dateTimePicker").datepicker( {dateFormat:"dd/mm/yy"} );
+</script>

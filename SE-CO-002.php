@@ -868,7 +868,7 @@ $resultUpdate = mysqli_fetch_assoc($queryUpdate);
                                             <div class="form-actions">
                                                 <div class="row">
                                                     <div class="col-md-12" style="text-align: center">
-                                                        <a href="javascript:;" class="btn default button-previous"><i class="fa fa-angle-left"></i> กลับ </a>
+                                                        <a href="javascript:;" class="btn btn-outline green button-previous"><i class="fa fa-angle-left"></i> กลับ </a>
                                                         <a href="javascript:;" class="btn btn-outline green button-next"> ถัดไป <i class="fa fa-angle-right"></i></a>
                                                         <button type="submit" class="btn green button-submit"> บันทึก <i class="fa fa-check"></i></button>
                                                         <input type="hidden" name="checkCorpEdit" value="1" />

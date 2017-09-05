@@ -88,7 +88,7 @@ if(isset($_POST["checkStuEdit"]) and $_POST["checkStuEdit"] == "1")
 
 	$sql->table="tbl_authentication";
 	$sql->value="name='{$_POST["name_th"]}'";
-	$sql->condition="WHERE id='{$_POST["mobile_phone"]}'";
+	$sql->condition="WHERE id='{$_POST["user_update"]}'";
 	$sql->update();
 
 	$sql->table="tbl_student";

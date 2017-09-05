@@ -126,31 +126,7 @@ if (el) {
         },
         function(isConfirm) {
             if (isConfirm) {
-                $.ajax({
-                    url: 'stu_info.php',
-                    type: 'POST',
-                    dataType: 'json',
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    data: fd,
-                    beforeSend: function(bfs) {
-                        $(".item").css({"display": "block"});
-                        console.log(bfs);
-                    },
-                })
-                .done(function(reply) {
-                    if (reply == 1) {
-                        $(".item").css({"display": "none"});
-                        swal("เสร็จสิ้น!", "บันทึกข้อมูลใบสมัครของนักศึกษาเรียบร้อยแล้ว", "success");
-                        $('.confirm').click(function() {
-                            window.location.href="SE-CO-003.php?page=student&sub=coop_03";
-                        });
-                    } else {
-                        $(".item").css({"display": "none"});
-                        swal("พบข้อผิดพลาด!", "ไม่สามารถบันทึกข้อมูลได้ กรุณาลองใหม่อีกครั้ง! \n หรือติดต่อสาขาวิชาวิศวกรรมซอฟต์แวร์ \n โทร 054-237399 ต่อ (6000)", "error");
-                    }
-                });
+                form.submit();
             } 
         });
     });

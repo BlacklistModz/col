@@ -1,72 +1,18 @@
 <?php 
 include("../../class/session_check.php");
+include("../../class/DateSwitch.Bootstrap.php");
 
 $page = $_GET["page"];
 
 if(isset($_POST["checkStuEdit"]) and $_POST["checkStuEdit"] == "1")
 {
-	//------------- Tab 1 --------------
-	 /* $id = $_POST["id"];
-	$name = $_POST["name_th"];
-	$name_en = $_POST["name_en"];
-	$major = $_POST["major"];
-	$faculty = $_POST["faculty"];
-	$gpa = $_POST["gpa"];
-	$gender = $_POST["gender"];
-	$birthplace = $_POST["birthplace"];
-	$birthdate = DateInSQL($_POST["birthdate"]);
-	$height = $_POST["height"];
-	$weight = $_POST["weight"];
-	$id_card = $_POST["id_card"];
-	$date_issued = DateInSQL($_POST["date_issued"]);
-	$expiry_date = DateInSQL($_POST["expiry_date"]);
-	$issued_at = $_POST["issued_at"];
-	$religion = $_POST["religion"];
-	$nationality = $_POST["nationality"];
-	$driving_license = $_POST["driving_license"];
-	$expiry_driving = DateInSQL($_POST["expiry_driving"]);
-	$conscription = $_POST["conscription"];
-
-	//------------- Tab 2 --------------
-	$father_name = $_POST["father_name"];
-	$father_career = $_POST["father_career"];
-	$father_workplace = $_POST["father_workplace"];
-	$father_phone = $_POST["father_phone"];
-	$mother_name = $_POST["mother_name"];
-	$mother_career = $_POST["mother_career"];
-	$mother_workplace = $_POST["mother_workplace"];
-	$mother_phone = $_POST["mother_phone"];
-	$parent_address = $_POST["parent_address"];
-	$parent_phone = $_POST["parent_phone"];
-	$permanent_address = $_POST["permanent_address"];
-	$permanent_phone = $_POST["permanent_phone"];
-	
-	if(isset($_POST["cloneDataAds"]) and $_POST["cloneDataAds"] == "1")
-	{
-		$contact_address = "";
-		$contact_phone = "";
-	}
-	else
-	{
-		$contact_address = $_POST["contact_address"];
-		$contact_phone = $_POST["contact_phone"];
-	}
-
-	$mobile_phone = $_POST["mobile_phone"];
-	$email = $_POST["email"];
-	$emer_name = $_POST["emer_name"];
-	$emer_address = $_POST["emer_address"];
-	$emer_phone = $_POST["emer_phone"];
-
-	//--------------- Value Hidden --------------
-	$update_user = $_POST["update_user"]; */
-
 	$value = "";
 
 	foreach ($_POST as $key => $item) {
 		if( $key == "stu_id" || $key == "id" || $key == "checkStuEdit" || $key == "cloneDataParent" || $key == "cloneDataAds" || $key == "check_address" || $key == "emer_name" || $key == "emer_address" || $key == "emer_phone" || $key == "name_th" || $key == "edu_id" || $key == "edu_academy" || $key == "edu_major" || $key == "edu_level" || $key == "edu_start" || $key == "edu_end" || $key == "edu_grade" || $key == "sub_point" || $key == "sub_id" ) continue;
 
 		if( $key == "birthdate" ) $item = DateInSQL($item);
+		if( $key == "update_user" ) $key = "user_update";
 
 		$value .= !empty($value) ? "," : "";
 		$value .= "{$key}='{$item}'";
@@ -94,14 +40,13 @@ if(isset($_POST["checkStuEdit"]) and $_POST["checkStuEdit"] == "1")
 	$value .= ",update_date=NOW()";
 
 	$sql->table="tbl_authentication";
-	$sql->value="name='$name'";
-	$sql->condition="WHERE id='$update_user'";
+	$sql->value="name='{$_POST["name_th"]}'";
+	$sql->condition="WHERE id='{$_POST["update_user"]}'";
 	$sql->update();
 
-	$sql->table="tbl_authentication";
-	$sql->value="name='{$_POST["name_th"]}'";
-	$sql->condition="WHERE id='{$_POST["mobile_phone"]}'";
-	$sql->update();
+	$sql->table="tbl_student";
+	$sql->value=$value;
+	$sql->condition="WHERE id='{$_POST["id"]}'";
 	if($sql->update())
 	{
 		//------------------------- Education Manage ---------------------------//
@@ -162,13 +107,13 @@ if(isset($_POST["checkStuEdit"]) and $_POST["checkStuEdit"] == "1")
 		} */
 		//-----------------------------------------------------------------------//
 
-		$alert = "ปรับปรุงข้อมูลใบสมัครของนักศึกษา $name เรียบร้อยแล้ว";
+		$alert = "ปรับปรุงข้อมูลใบสมัครของนักศึกษา {$_POST["name_th"]} เรียบร้อยแล้ว";
 		$location = "index.php?page=$page";
 	}
 	else
 	{
 		$alert = "ไม่สามารถบันทึกใบสมัครของนักศึกษาได้ กรุณาลองใหม่อีกครั้ง";
-		$location = "student_info.php?page=$page&id=$update_user";
+		$location = "student_info.php?page=$page&id={$_POST["update_user"]}";
 	}
 }
 else
@@ -176,5 +121,5 @@ else
 	$location = "index.php?page=$page";
 }
 
-require("class/JsControl.php");
+require("../../class/JsControl.php");
 ?>

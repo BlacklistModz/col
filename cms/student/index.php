@@ -46,6 +46,8 @@ $query = $sql->select();
 						<div class="box-header with-border">
 							<h3 class="box-title form-inline">
 								<a href="add_student.php?page=<?php echo $_GET["page"]; ?>" class="btn btn-success">เพิ่มนักศึกษา</a>
+							</h3>
+							<div class="form-inline" style="margin-top: 2mm;">
 								<select class="form-control js-change-group" name="group">
 									<option value="">--- เลือกกลุ่มนักศึกษา ---</option>
 									<?php 
@@ -113,7 +115,7 @@ $query = $sql->select();
 									}
 									?>
 								</select>
-							</h3>
+							</div>
 							<div class="box-tools pull-right">
 								<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="ซ่อน">
 									<i class="fa fa-minus"></i></button>

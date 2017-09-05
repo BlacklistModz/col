@@ -566,3 +566,12 @@ if( mid != 0 && mid != "" ){
 $(".js-select-faculty").change(function(){
     $(this).setMajor( $(this).val() );
 });
+
+
+//DateTimePicker
+$(".dateTimePicker").datepicker( {
+    dateFormat:"dd/mm/yy", 
+    yearRange: "-100:+0", 
+    changeMonth: true,
+    changeYear: true,
+} );

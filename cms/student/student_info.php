@@ -8,12 +8,12 @@ $month=array("1"=>"มกราคม", "2"=>"กุมภาพันธ์", "
 $id = $_GET["id"];
 
 $sql->table="tbl_authentication";
-$sql->condition="WHERE id='$id'";
+$sql->condition="WHERE id={$id}";
 $queryUser = $sql->select();
 $resultUser = mysqli_fetch_assoc($queryUser);
 
 $sql->table="tbl_student";
-$sql->condition="WHERE user_id='$id'";
+$sql->condition="WHERE user_id={$resultUser["id"]}";
 $queryStudent = $sql->select();
 $resultStudent = mysqli_fetch_assoc($queryStudent);
 ?>
@@ -220,8 +220,14 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
                                                 <label class="control-label col-md-4">วันเกิด
                                                     <span class="required"> * </span>
                                                 </label>
+                                                <?php 
+                                                $birthdate = "";
+                                                if( !empty($resultStudent["birthdate"]) && $resultStudent["birthdate"] != "0000-00-00" ){
+                                                    $birthdate = DateOutSQL($resultStudent["birthdate"]);
+                                                }
+                                                ?>
                                                 <div class="col-md-6">
-                                                    <input type="text" class="form-control dateTimePicker" name="birthdate" value="<?php if($resultStudent["birthdate"] != "0000-00-00") { echo DateOutSQL($resultStudent["birthdate"]); } ?>" data-date="dtp" placeholder="กรุณาเลือก วัน/เดือนน/ปี เกิด" required readonly />
+                                                    <input type="text" class="form-control dateTimePicker" name="birthdate" value="<?=$birthdate?>" data-date="dtp" placeholder="กรุณาเลือก วัน/เดือนน/ปี เกิด" required readonly />
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -1420,10 +1426,7 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
 		<script type="text/javascript" src="../../js/app.min.js"></script>
 		<script type="text/javascript" src="../../js/form-wizard.min.js"></script>
 		<script type="text/javascript" src="../../js/messages_th.min.js"></script>
-		<script type="text/javascript" src="../../js/SE-CO-003.js"></script>
 		<script type="text/javascript" src="../../js/jquery-ui.min.js"></script>
 		<script type="text/javascript" src="../../js/jquery-ui-timepicker-addon.js"></script>
 		<script type="text/javascript" src="../../js/jquery-ui-sliderAccess.js"></script>
-		<script type="text/javascript">
-			$(".dateTimePicker").datepicker( {dateFormat:"dd/mm/yy"} );
-		</script>
+        <script type="text/javascript" src="../../js/SE-CO-003.js"></script>

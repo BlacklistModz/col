@@ -1471,10 +1471,7 @@ $resultStudent = mysqli_fetch_assoc($queryStudent);
 <script type="text/javascript" src="js/form-wizard.min.js"></script>
 <script type="text/javascript" src="js/messages_th.min.js"></script>
 <!-- <script type="text/javascript" src="js/bootstrap-datepicker.js"></script> -->
-<script type="text/javascript" src="js/SE-CO-003.js"></script>
 <script type="text/javascript" src="js/jquery-ui.min.js"></script>
 <script type="text/javascript" src="js/jquery-ui-timepicker-addon.js"></script>
 <script type="text/javascript" src="js/jquery-ui-sliderAccess.js"></script>
-<script type="text/javascript">
-    $(".dateTimePicker").datepicker( {dateFormat:"dd/mm/yy"} );
-</script>
+<script type="text/javascript" src="js/SE-CO-003.js"></script>

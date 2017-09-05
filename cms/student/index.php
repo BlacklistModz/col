@@ -21,6 +21,7 @@ if( !empty($_GET["year"]) ){
 }
 
 $sql->table="tbl_authentication a LEFT JOIN tbl_student s ON a.id=s.user_id";
+$sql->field="a.*, s.major_id, s.faculty_id, s.year_id, s.update_date";
 $sql->condition="WHERE (status_id='4' or status_id='5') $condition";
 $query = $sql->select();
 ?>

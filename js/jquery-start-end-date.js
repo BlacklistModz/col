@@ -5,6 +5,9 @@ $(function(){
 
 	startDateTextBox.datepicker({ 
 		dateFormat: 'dd/mm/yy',
+		yearRange: "-100:+0", 
+		changeMonth: true,
+		changeYear: true,
 		onClose: function(dateText, inst) {
 			if (endDateTextBox.val() != '') {
 				var startDate = startDateTextBox.datetimepicker('getDate');
@@ -22,6 +25,9 @@ $(function(){
 	});
 	endDateTextBox.datepicker({ 
 		dateFormat: 'dd/mm/yy',
+		yearRange: "-100:+0", 
+		changeMonth: true,
+		changeYear: true,
 		onClose: function(dateText, inst) {
 			if (startDateTextBox.val() != '') {
 				var startDate = startDateTextBox.datetimepicker('getDate');

@@ -529,6 +529,7 @@ $("body").on("focus", "input[data-date='dtp']", function() {
 
 // Function for Load Majors
 
+//~cooplpru
 var URL = window.location.origin + '/col/'
  
 var sel_majors = $(".js-select-majors");

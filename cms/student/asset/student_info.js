@@ -505,6 +505,7 @@ $("body").on("focus", "input[data-date='dtp']", function() {
 
 // Function for Load Majors
 
+// ~cooplpru
 var URL = window.location.origin + '/col/'
  
 var sel_majors = $(".js-select-majors");
@@ -512,7 +513,7 @@ $.fn.extend({
     setMajor: function( fid, id=0 ){
         $.ajax({
             type: "GET",
-            url: URL+"fn/majors.php",
+            url: "fn/majors.php",
             data: ({ id:fid }),
             dataType: "json",
             success: function(json){

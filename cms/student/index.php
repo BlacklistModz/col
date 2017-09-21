@@ -2,27 +2,35 @@
 include("../header.php");
 include("../sidebar.php");
 
-$condition = "";
+$condition = "(status_id='4' or status_id='5')";
 
 if( !empty($_GET["group"]) ){
-	$condition .= " AND a.username LIKE '{$_GET["group"]}%'";
+	$condition .= !empty($condition) ? " AND " : "";
+	$condition .= "a.username LIKE '{$_GET["group"]}%'";
 }
 
 if( !empty($_GET["faculty"]) ){
-	$condition .= " AND s.faculty_id={$_GET["faculty"]}";
+	$condition .= !empty($condition) ? " AND " : "";
+	$condition .= "s.faculty_id={$_GET["faculty"]}";
 }
 
 if( !empty($_GET["majors"]) ){
-	$condition .= " AND s.major_id={$_GET["majors"]}";
+	$condition .= !empty($condition) ? " AND " : "";
+	$condition .= "s.major_id={$_GET["majors"]}";
 }
 
 if( !empty($_GET["year"]) ){
-	$condition .= " AND s.year_id={$_GET["year"]}";
+	$condition .= !empty($condition) ? " AND " : "";
+	$condition .= "s.year_id={$_GET["year"]}";
+}
+
+if( !empty($condition) ){
+	$condition = "WHERE ".$condition;
 }
 
 $sql->table="tbl_authentication a LEFT JOIN tbl_student s ON a.id=s.user_id";
 $sql->field="a.*, s.major_id, s.faculty_id, s.year_id, s.update_date";
-$sql->condition="WHERE (status_id='4' or status_id='5') $condition";
+$sql->condition=$condition;
 $query = $sql->select();
 ?>
 <div class="content-wrapper">
@@ -48,73 +56,75 @@ $query = $sql->select();
 								<a href="add_student.php?page=<?php echo $_GET["page"]; ?>" class="btn btn-success">เพิ่มนักศึกษา</a>
 							</h3>
 							<div class="form-inline" style="margin-top: 2mm;">
-								<select class="form-control js-change-group" name="group">
-									<option value="">--- เลือกกลุ่มนักศึกษา ---</option>
-									<?php 
-									$sql->table="tbl_authentication";
-									$sql->field="substr(username,1,2) AS stu_group";
-									$sql->condition="WHERE status_id='4' or status_id='5' GROUP By stu_group DESC";
-									$queryGroup = $sql->select();
-									while($resultGroup = mysqli_fetch_assoc($queryGroup))
-									{
+								<from id="form-search">
+									<select class="form-control" name="group">
+										<option value="">--- เลือกกลุ่มนักศึกษา ---</option>
+										<?php 
+										$sql->table="tbl_authentication";
+										$sql->field="substr(username,1,2) AS stu_group";
+										$sql->condition="WHERE status_id='4' or status_id='5' GROUP By stu_group DESC";
+										$queryGroup = $sql->select();
+										while($resultGroup = mysqli_fetch_assoc($queryGroup))
+										{
+											?>
+											<option value="<?php echo $resultGroup["stu_group"]; ?>" <?php if(isset($_GET["group"]) and $_GET["group"] == $resultGroup["stu_group"]) { echo "selected"; } ?>>รหัส : <?php echo $resultGroup["stu_group"]; ?></option>
+											<?php
+										}
 										?>
-										<option value="<?php echo $resultGroup["stu_group"]; ?>" <?php if(isset($_GET["group"]) and $_GET["group"] == $resultGroup["stu_group"]) { echo "selected"; } ?>>รหัส : <?php echo $resultGroup["stu_group"]; ?></option>
-										<?php
-									}
-									?>
-								</select>
-								<select class="form-control js-change-faculty" name="faculty">
-									<option value="">--- เลือกคณะ ---</option>
-									<?php 
-									$sql->table="tbl_faculty";
-									$sql->field="*";
-									$sql->condition="";
-									$queryFaculty = $sql->select();
-									while($resultFaculty = mysqli_fetch_assoc($queryFaculty)){
-										$sel = '';
-										if( !empty($_GET["faculty"]) ){
-											if( $_GET["faculty"] == $resultFaculty["faculty_id"] ) {
-												$sel = ' selected="1"';
+									</select>
+									<select class="form-control" name="faculty">
+										<option value="">--- เลือกคณะ ---</option>
+										<?php 
+										$sql->table="tbl_faculty";
+										$sql->field="*";
+										$sql->condition="";
+										$queryFaculty = $sql->select();
+										while($resultFaculty = mysqli_fetch_assoc($queryFaculty)){
+											$sel = '';
+											if( !empty($_GET["faculty"]) ){
+												if( $_GET["faculty"] == $resultFaculty["faculty_id"] ) {
+													$sel = ' selected="1"';
+												}
 											}
+											echo '<option'.$sel.' value="'.$resultFaculty["faculty_id"].'">'.$resultFaculty["faculty_name"].'</option>';
 										}
-										echo '<option'.$sel.' value="'.$resultFaculty["faculty_id"].'">'.$resultFaculty["faculty_name"].'</option>';
-									}
-									?>
-								</select>
-								<select class="form-control js-change-majors" name="majors">
-									<option value="">--- เลือกสาขา ---</option>
-									<?php 
-									$m_condition = "";
-									if( !empty($_GET["faculty"]) ) $m_condition = "WHERE major_faculty_id={$_GET["faculty"]}";
+										?>
+									</select>
+									<select class="form-control" name="majors">
+										<option value="">--- เลือกสาขา ---</option>
+										<?php 
+										$m_condition = "";
+										if( !empty($_GET["faculty"]) ) $m_condition = "WHERE major_faculty_id={$_GET["faculty"]}";
 
-									$sql->table="tbl_majors";
-									$sql->condition=$m_condition;
-									$queryMajors = $sql->select();
-									while($resultMajors = mysqli_fetch_assoc($queryMajors)){
-										$sel = '';
-										if( !empty($_GET["majors"]) ){
-											if($_GET["majors"] == $resultMajors["major_id"]) $sel = ' selected="1"';
+										$sql->table="tbl_majors";
+										$sql->condition=$m_condition;
+										$queryMajors = $sql->select();
+										while($resultMajors = mysqli_fetch_assoc($queryMajors)){
+											$sel = '';
+											if( !empty($_GET["majors"]) ){
+												if($_GET["majors"] == $resultMajors["major_id"]) $sel = ' selected="1"';
+											}
+											echo '<option'.$sel.' value="'.$resultMajors["major_id"].'">'.$resultMajors["major_name"].'</option>';
 										}
-										echo '<option'.$sel.' value="'.$resultMajors["major_id"].'">'.$resultMajors["major_name"].'</option>';
-									}
-									?>
-								</select>
-								<select class="form-control js-change-year" name="year">
-									<option value="">--- เลือกปีการศึกษา ---</option>
-									<?php 
-									$sql->table="tbl_year";
-									$sql->condition="ORDER BY academic_year DESC";
-									$query_Year = $sql->select();
+										?>
+									</select>
+									<select class="form-control" name="year">
+										<option value="">--- เลือกปีการศึกษา ---</option>
+										<?php 
+										$sql->table="tbl_year";
+										$sql->condition="ORDER BY academic_year DESC";
+										$query_Year = $sql->select();
 
-									while($result_Year = mysqli_fetch_assoc($query_Year)){
-										$sel = '';
-										if( !empty($_GET["year"]) ){
-											if($_GET["year"] == $result_Year["id"]) $sel = ' selected="1"';
+										while($result_Year = mysqli_fetch_assoc($query_Year)){
+											$sel = '';
+											if( !empty($_GET["year"]) ){
+												if($_GET["year"] == $result_Year["id"]) $sel = ' selected="1"';
+											}
+											echo '<option'.$sel.' value="'.$result_Year["id"].'">'.$result_Year["academic_year"].'</option>';
 										}
-										echo '<option'.$sel.' value="'.$result_Year["id"].'">'.$result_Year["academic_year"].'</option>';
-									}
-									?>
-								</select>
+										?>
+									</select>
+								</from>
 							</div>
 							<div class="box-tools pull-right">
 								<button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="ซ่อน">
@@ -214,21 +224,12 @@ $query = $sql->select();
 		});
 
 		var page = $(".js-page").data("page");
-		var group = $(".js-change-group").val();
-		var faculty = $(".js-change-faculty").val();
-		var majors = $(".js-change-majors").val();
-		var year = $(".js-change-year").val();
+		$("#form-search").change(function(){
+			var group = $(this).find("[name=group]").val();
+			var faculty = $(this).find("[name=faculty]").val();
+			var majors = $(this).find("[name=majors]").val();
+			var year = $(this).find("[name=year]").val();
 
-		$(".js-change-group").change(function(){
-			window.location = "?page="+page+"&group="+$(this).val()+"&faculty="+faculty+"&majors="+majors+"&year="+year;
+			window.location = "?page="+page+"&group="+group+"&faculty="+faculty+"&majors="+majors+"&year="+year;
 		});
-		$(".js-change-faculty").change(function(){
-			window.location = "?page="+page+"&group="+group+"&faculty="+$(this).val()+"&majors="+majors+"&year="+year;
-		});
-		$(".js-change-majors").change(function(){
-			window.location = "?page="+page+"&group="+group+"&faculty="+faculty+"&majors="+$(this).val()+"&year="+year;
-		});
-		$(".js-change-year").change(function(){
-			window.location = "?page="+page+"&group="+group+"&faculty="+faculty+"&majors="+majors+"&year="+$(this).val();
-		})
 	</script>
